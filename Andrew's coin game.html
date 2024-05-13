@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Coin Flip Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Added position relative for absolute positioning of coins */
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+
+        .coins {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+        }
+
+        .chosen {
+            border: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Coin Flip Game</h1>
+        <div id="gameOver" style="display: none;">
+            <h1>Game Over!</h1>
+            <h1>Total Coins: <span id="totalCoins">0</span></h1>
+            <button onclick="returnToHomepage()">Return to Homepage</button>
+        </div>
+        <p id="instructions">Choose heads or tails and click "Flip Coin" to see if you win!</p>
+        <div id="choiceButtons">
+            <button id="headsBtn" onclick="setChoice('Heads')">Heads</button>
+            <button id="tailsBtn" onclick="setChoice('Tails')">Tails</button>
+        </div>
+        <div class="result" id="result"></div>
+        <button onclick="flipCoin()" id="flipBtn">Flip Coin</button>
+        <div class="coins" id="coins">Coins: <span id="coinCount">0</span></div>
+        <div id="roundCounter">Round: 1/5</div>
+
+    </div>
+
+    <script>
+        let coins = 0; // Initialize coins counter
+        let flips = 0; // Initialize flips counter
+        let choice = ""; // Initialize user's choice
+        let round = 1; // Initialize round counter
+
+        function setChoice(chosen) {
+            choice = chosen;
+            document.getElementById("headsBtn").classList.remove("chosen");
+            document.getElementById("tailsBtn").classList.remove("chosen");
+            document.getElementById(chosen.toLowerCase() + "Btn").classList.add("chosen");
+        }
+
+        function flipCoin() {
+            if (choice === "") {
+                alert("Please choose either Heads or Tails.");
+                return;
+            }
+
+            const resultElement = document.getElementById("result");
+            const randomNumber = Math.random();
+            let result;
+
+            if (randomNumber < 0.5) {
+                result = "Heads";
+            } else {
+                result = "Tails";
+            }
+
+            resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
+
+            if (choice === result) {
+                resultElement.innerText += ". You win 5 coins!";
+                coins += 5; // Update coins if user wins
+                document.getElementById("coinCount").innerText = coins; // Update coins display
+            }
+
+            flips++; // Increment flips counter
+
+            if (flips === 5) {
+                gameOver();
+            } else {
+                document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
+                round++;
+            }
+        }
+
+        function gameOver() {
+            document.getElementById("gameOver").style.display = "block";
+            document.getElementById("totalCoins").innerText = coins;
+            document.getElementById("coins").style.display = "none";
+            document.getElementById("choiceButtons").style.display = "none";
+            document.getElementById("flipBtn").style.display = "none";
+            document.getElementById("instructions").style.display = "none";
+            document.getElementById("roundCounter").style.display = "none";
+        }
+
+        function returnToHomepage() {
+            // Add your code to redirect to the homepage or perform any other action
+            alert("Returning to homepage!");
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
+
+
+
+
