@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Basic Snake HTML Game</title>
+  <meta charset="UTF-8">
+  <style>
+  html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  canvas {
+    border: 1px solid white;
+  }
+  #coins {
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  #timer {
+    color: white;
+    font-size: 24px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+  }
+
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  </style>
+</head>
+<body>
+<canvas width="400" height="400" id="game"></canvas>
+<div id="coins">Coins: 0</div>
+<div id="timer">Time: 30</div>
+
+<!-- Modal -->
+<div id="myModal" class="modal">
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p id="modal-text"></p>
+    <button id="reset-btn">Play Again</button>
+  </div>
+</div>
+
+<script>
+var canvas = document.getElementById('game');
+var context = canvas.getContext('2d');
+var coinsDisplay = document.getElementById('coins');
+var timerDisplay = document.getElementById('timer');
+var modal = document.getElementById('myModal');
+var modalText = document.getElementById('modal-text');
+var resetBtn = document.getElementById('reset-btn');
+
+// the canvas width & height, snake x & y, and the apple x & y, all need to be multiples of the grid size in order for collision detection to work
+// (e.g. 16 * 25 = 400)
+var grid = 16;
+var coins = 0;
+var time = 30;
+var gameInterval;
+var timerInterval;
+var snake;
+var apple;
+
+function startGame() {
+  snake = {
+    x: 160,
+    y: 160,
+
+    // snake velocity. moves one grid length every frame in either the x or y direction
+    dx: grid,
+    dy: 0,
+
+    // keep track of all grids the snake body occupies
+    cells: [],
+
+    // length of the snake. grows when eating an apple
+    maxCells: 1
+  };
+  apple = {
+    x: 320,
+    y: 320
+  };
+
+  // start the game loop
+  gameInterval = setInterval(loop, 100); // Snake movement speed is maintained at 100ms interval
+
+  // start the timer
+  timerInterval = setInterval(updateTimer, 1000); // Timer updates every second
+}
+
+function updateTimer() {
+  time--;
+
+  // Update timer display
+  timerDisplay.textContent = 'Time: ' + time;
+
+  // Check if time is up
+  if (time <= 0) {
+    endGame();
+  }
+}
+
+// get random whole numbers in a specific range
+// @see https://stackoverflow.com/a/1527820/2124254
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+// game loop
+function loop() {
+  context.clearRect(0, 0, canvas.width, canvas.height);
+
+  // move snake by its velocity
+  snake.x += snake.dx;
+  snake.y += snake.dy;
+
+  // wrap snake position horizontally on edge of screen
+  if (snake.x < 0) {
+    snake.x = canvas.width - grid;
+  } else if (snake.x >= canvas.width) {
+    snake.x = 0;
+  }
+
+  // wrap snake position vertically on edge of screen
+  if (snake.y < 0) {
+    snake.y = canvas.height - grid;
+  } else if (snake.y >= canvas.height) {
+    snake.y = 0;
+  }
+
+  // keep track of where snake has been. front of the array is always the head
+  snake.cells.unshift({ x: snake.x, y: snake.y });
+
+  // remove cells as we move away from them
+  if (snake.cells.length > snake.maxCells) {
+    snake.cells.pop();
+  }
+
+  // draw apple
+  context.fillStyle = 'yellow';
+  context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+
+  // draw snake one cell at a time
+  context.fillStyle = 'blue';
+  snake.cells.forEach(function (cell, index) {
+
+    // drawing 1 px smaller than the grid creates a grid effect in the snake body so you can see how long it is
+    context.fillRect(cell.x, cell.y, grid - 1, grid - 1);
+
+    // snake ate apple
+    if (cell.x === apple.x && cell.y === apple.y) {
+      snake.maxCells++;
+      coins += 1; // Increase coins when snake eats an apple
+
+      // Update coins display
+      coinsDisplay.textContent = 'Coins: ' + coins;
+
+      // canvas is 400x400 which is 25x25 grids
+      apple.x = getRandomInt(0, 25) * grid;
+      apple.y = getRandomInt(0, 25) * grid;
+    }
+
+    // check collision with all cells after this one (modified bubble sort)
+    for (var i = index + 1; i < snake.cells.length; i++) {
+
+      // snake occupies same space as a body part. reset game
+      if (cell.x === snake.cells[i].x && cell.y === snake.cells[i].y) {
+        endGame();
+      }
+    }
+  });
+}
+
+// Function to end the game
+function endGame() {
+  clearInterval(gameInterval);
+  clearInterval(timerInterval);
+  modalText.textContent = 'Game Over!\nTotal Coins Collected: ' + coins;
+  modal.style.display = 'block'; // Display modal
+}
+
+// Function to reset the game
+function resetGame() {
+  modal.style.display = 'none'; // Hide modal
+  time = 30;
+  coins = 0;
+  coinsDisplay.textContent = 'Coins: ' + coins;
+  timerDisplay.textContent = 'Time: ' + time;
+  startGame();
+}
+
+// listen to keyboard events to move the snake
+document.addEventListener('keydown', function (e) {
+  // prevent snake from backtracking on itself by checking that it's
+  // not already moving on the same axis (pressing left while moving
+  // left won't do anything, and pressing right while moving left
+  // shouldn't let you collide with your own body)
+
+  // left arrow key
+  if (e.which === 37 && snake.dx === 0) {
+    snake.dx = -grid;
+    snake.dy = 0;
+  }
+  // up arrow key
+  else if (e.which === 38 && snake.dy === 0) {
+    snake.dy = -grid;
+    snake.dx = 0;
+  }
+  // right arrow key
+  else if (e.which === 39 && snake.dx === 0) {
+    snake.dx = grid;
+    snake.dy = 0;
+  }
+  // down arrow key
+  else if (e.which === 40 && snake.dy === 0) {
+    snake.dy = grid;
+    snake.dx = 0;
+  }
+});
+
+// Restart game when reset button is clicked
+resetBtn.addEventListener('click', resetGame);
+
+// Close modal when close button is clicked
+var closeBtn = document.getElementsByClassName('close')[0];
+closeBtn.addEventListener('click', function() {
+  modal.style.display = 'none';
+});
+
+// start the game
+startGame();
+</script>
+</body>
+</html>
