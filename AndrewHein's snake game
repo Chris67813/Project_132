@@ -96,11 +96,13 @@ var modal = document.getElementById('myModal');
 var modalText = document.getElementById('modal-text');
 var resetBtn = document.getElementById('reset-btn');
 
-// Load snake head and body images
+// Load snake head, body, and apple images
 var snakeHeadImg = new Image();
 snakeHeadImg.src = 'https://www.simplilearn.com/ice9/free_resources_article_thumb/Shyamli/Dogecoin.png';
 var snakeBodyImg = new Image();
 snakeBodyImg.src = 'https://www.simplilearn.com/ice9/free_resources_article_thumb/Shyamli/Dogecoin.png';
+var appleImg = new Image();
+appleImg.src = 'https://cdn-icons-png.flaticon.com/512/415/415733.png'; // URL to the apple image
 
 var grid = 16;
 var coins = 0;
@@ -164,8 +166,8 @@ function loop() {
     snake.cells.pop();
   }
 
-  context.fillStyle = 'yellow';
-  context.fillRect(apple.x, apple.y, grid - 1, grid - 1);
+  // Draw the apple image
+  context.drawImage(appleImg, apple.x, apple.y, grid - 1, grid - 1);
 
   snake.cells.forEach(function (cell, index) {
     if (index === 0) {
