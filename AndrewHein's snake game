@@ -88,7 +88,7 @@
   </style>
 </head>
 <body>
-<canvas width="400" height="400" id="game"></canvas>
+<canvas width="500" height="500" id="game"></canvas>
 <div id="coins">Coins: 0</div>
 <div id="timer">Time: 30</div>
 <button id="homepage-btn">Return to Homepage</button> <!-- Added button -->
@@ -123,7 +123,7 @@ snakeBodyImg.src = 'https://www.simplilearn.com/ice9/free_resources_article_thum
 var appleImg = new Image();
 appleImg.src = 'https://cdn-icons-png.flaticon.com/512/415/415733.png'; // URL to the apple image
 
-var grid = 16;
+var grid = 20;
 var coins = 0;
 var time = 30;
 var gameInterval;
