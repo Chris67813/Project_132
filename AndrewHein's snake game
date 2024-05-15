@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column; /* Add this to allow the column layout */
   }
   canvas {
     border: 1px solid white;
@@ -33,6 +34,13 @@
     position: absolute;
     top: 10px;
     right: 10px;
+  }
+
+  #homepage-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
   }
 
   /* Modal styles */
@@ -54,6 +62,13 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%; /* Could be more or less, depending on screen size */
+    text-align: center; /* Center the text */
+  }
+
+  /* Center buttons */
+  .modal-content button {
+    display: block;
+    margin: 10px auto;
   }
 
   /* Close button */
@@ -76,6 +91,7 @@
 <canvas width="400" height="400" id="game"></canvas>
 <div id="coins">Coins: 0</div>
 <div id="timer">Time: 30</div>
+<button id="homepage-btn">Return to Homepage</button> <!-- Added button -->
 
 <!-- Modal -->
 <div id="myModal" class="modal">
@@ -84,6 +100,7 @@
     <span class="close">&times;</span>
     <p id="modal-text"></p>
     <button id="reset-btn">Play Again</button>
+    <button id="modal-homepage-btn">Return to Homepage</button> <!-- Added button -->
   </div>
 </div>
 
@@ -95,6 +112,8 @@ var timerDisplay = document.getElementById('timer');
 var modal = document.getElementById('myModal');
 var modalText = document.getElementById('modal-text');
 var resetBtn = document.getElementById('reset-btn');
+var homepageBtn = document.getElementById('homepage-btn');
+var modalHomepageBtn = document.getElementById('modal-homepage-btn'); // Added variable
 
 // Load snake head, body, and apple images
 var snakeHeadImg = new Image();
@@ -208,6 +227,10 @@ function resetGame() {
   startGame();
 }
 
+function returnToHomepage() {
+  window.location.href = 'your-homepage-url.html'; // Replace with your homepage URL
+}
+
 document.addEventListener('keydown', function (e) {
   if (e.which === 37 && snake.dx === 0) {
     snake.dx = -grid;
@@ -225,6 +248,8 @@ document.addEventListener('keydown', function (e) {
 });
 
 resetBtn.addEventListener('click', resetGame);
+homepageBtn.addEventListener('click', returnToHomepage);
+modalHomepageBtn.addEventListener('click', returnToHomepage); // Added event listener
 var closeBtn = document.getElementsByClassName('close')[0];
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
