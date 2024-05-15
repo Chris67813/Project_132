@@ -1,0 +1,226 @@
+<DOCTYPE html>
+<!-- Coding By CodingNepal - codingnepalweb.com -->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JavaScript Game | Rock Paper Scissors</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f7fb;
+}
+::selection {
+  color: #fff;
+  background-color: #7d2ae8;
+}
+.container {
+  padding: 2rem 7rem;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+.result_images {
+  display: flex;
+  column-gap: 7rem;
+}
+.container.start .user_result {
+  transform-origin: left;
+  animation: userShake 0.7s ease infinite;
+}
+@keyframes userShake {
+  50% {
+    transform: rotate(10deg);
+  }
+}
+.container.start .cpu_result {
+  transform-origin: right;
+  animation: cpuShake 0.7s ease infinite;
+}
+@keyframes cpuShake {
+  50% {
+    transform: rotate(-10deg);
+  }
+}
+.result_images img {
+  width: 100px;
+}
+.user_result img {
+  transform: rotate(90deg);
+}
+.cpu_result img {
+  transform: rotate(-90deg) rotateY(180deg);
+}
+.result {
+  text-align: center;
+  font-size: 2rem;
+  color: #7d2ae8;
+  margin-top: 1.5rem;
+}
+.option_image img {
+  width: 50px;
+}
+.option_images {
+  display: flex;
+  align-items: center;
+  margin-top: 2.5rem;
+  justify-content: space-between;
+}
+.container.start .option_images {
+  pointer-events: none;
+}
+.option_image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+.option_image:hover {
+  opacity: 1;
+}
+.option_image.active {
+  opacity: 1;
+}
+.option_image img {
+  pointer-events: none;
+}
+.option_image p {
+  color: #7d2ae8;
+  font-size: 1.235rem;
+  margin-top: 1rem;
+  pointer-events: none;
+}
+
+.round-counter {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #333;
+  }
+  
+  .final-result {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff6f61;
+  }
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <div class="round-counter">ROUND 1/5</div>
+      <div class="result_field">
+        <div class="result_images">
+          <span class="user_result">
+            <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
+          </span>
+          <span class="cpu_result">
+            <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
+          </span>
+        </div>
+        <div class="result">Let's Play!!</div>
+      </div>
+      <div class="option_images">
+        <span class="option_image">
+          <img src="https://m.media-amazon.com/images/I/51rOMX5z40L.jpg" alt="" />
+          <p>Rock</p>
+        </span>
+        <span class="option_image">
+          <img src="https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg" alt="" />
+          <p>Paper</p>
+        </span>
+        <span class="option_image">
+          <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
+          <p>Scissors</p>
+        </span>
+      </div>
+    </section>
+    <script>
+        const gameContainer = document.querySelector(".container"),
+  userResult = document.querySelector(".user_result img"),
+  cpuResult = document.querySelector(".cpu_result img"),
+  result = document.querySelector(".result"),
+  optionImages = document.querySelectorAll(".option_image"),
+  roundCounter = document.querySelector(".round-counter");
+
+let roundCount = 0;
+const maxRounds = 5;
+const coinsPerWin = 2;
+let coinsWon = 0;
+
+optionImages.forEach((image, index) => {
+  image.addEventListener("click", (e) => {
+    if (roundCount >= maxRounds) {
+      return;
+    }
+
+    image.classList.add("active");
+    userResult.src = cpuResult.src = "images/rock.png";
+    result.textContent = "Wait...";
+
+    optionImages.forEach((image2, index2) => {
+      index !== index2 && image2.classList.remove("active");
+    });
+
+    gameContainer.classList.add("start");
+
+    let time = setTimeout(() => {
+      gameContainer.classList.remove("start");
+
+      let imageSrc = e.target.querySelector("img").src;
+      userResult.src = imageSrc;
+
+      let randomNumber = Math.floor(Math.random() * 3);
+      let cpuImages = ["https://m.media-amazon.com/images/I/51rOMX5z40L.jpg", "https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg", "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1"];
+      cpuResult.src = cpuImages[randomNumber];
+
+      let cpuValue = ["R", "P", "S"][randomNumber];
+      let userValue = ["R", "P", "S"][index];
+
+      let outcomes = {
+        RR: "Draw",
+        RP: "Cpu",
+        RS: "User",
+        PP: "Draw",
+        PR: "User",
+        PS: "Cpu",
+        SS: "Draw",
+        SR: "Cpu",
+        SP: "User",
+      };
+
+      let outComeValue = outcomes[userValue + cpuValue];
+      result.textContent = userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+
+      if (outComeValue === "User") {
+        coinsWon += coinsPerWin;
+      }
+
+      roundCount++;
+      if (roundCount <= maxRounds) {
+        roundCounter.textContent = `ROUND ${roundCount}/${maxRounds}`;
+      }
+      if (roundCount === maxRounds) {
+        result.textContent = `You won ${coinsWon} coins!`;
+        result.classList.add("final-result");
+      }
+    }, 2500);
+  });
+});
+
+    </script>
+  </body>
+</html>
