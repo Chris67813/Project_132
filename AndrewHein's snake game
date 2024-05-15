@@ -10,7 +10,9 @@
   }
 
   body {
-    background: black;
+    background-image: url('https://cdn.tutsplus.com/mobile/uploads/legacy/Corona-SDK_Build-A-Snake-Game/1/6.png');
+    background-size: cover;
+    background-position: center;
     display: flex;
     align-items: center;
     justify-content: center;
