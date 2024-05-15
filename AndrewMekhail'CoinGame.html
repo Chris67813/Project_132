@@ -57,6 +57,9 @@
             <button id="headsBtn" onclick="setChoice('Heads')">Heads</button>
             <button id="tailsBtn" onclick="setChoice('Tails')">Tails</button>
         </div>
+        <div id="coinGIF" style="display: none;">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230527151013/Coin-toss-gif-(1).gif" alt="Coin Flip" width="200">
+        </div>
         <div class="result" id="result"></div>
         <button onclick="flipCoin()" id="flipBtn">Flip Coin</button>
         <div class="coins" id="coins">Coins: <span id="coinCount">0</span></div>
@@ -76,40 +79,48 @@
             document.getElementById("tailsBtn").classList.remove("chosen");
             document.getElementById(chosen.toLowerCase() + "Btn").classList.add("chosen");
         }
-
         function flipCoin() {
             if (choice === "") {
                 alert("Please choose either Heads or Tails.");
                 return;
             }
-
+        
             const resultElement = document.getElementById("result");
-            const randomNumber = Math.random();
-            let result;
-
-            if (randomNumber < 0.5) {
-                result = "Heads";
-            } else {
-                result = "Tails";
-            }
-
-            resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
-
-            if (choice === result) {
-                resultElement.innerText += ". You win 5 coins!";
-                coins += 5; // Update coins if user wins
-                document.getElementById("coinCount").innerText = coins; // Update coins display
-            }
-
-            flips++; // Increment flips counter
-
-            if (flips === 5) {
-                gameOver();
-            } else {
-                document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
-                round++;
-            }
+            const coinGIF = document.getElementById("coinGIF");
+            coinGIF.style.display = "block"; // Display the GIF
+        
+            setTimeout(() => {
+                coinGIF.style.display = "none"; // Hide the GIF after 1 second
+        
+                const randomNumber = Math.random();
+                let result;
+        
+                if (randomNumber < 0.5) {
+                    result = "Heads";
+                } else {
+                    result = "Tails";
+                }
+        
+                resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
+        
+                if (choice === result) {
+                    resultElement.innerText += ". You win 5 coins!";
+                    coins += 5; // Update coins if user wins
+                    document.getElementById("coinCount").innerText = coins; // Update coins display
+                }
+        
+                flips++; // Increment flips counter
+        
+                if (flips === 5) {
+                    gameOver();
+                } else {
+                    document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
+                    round++;
+                }
+            }, 1000); // Wait for 1 second before revealing the result
         }
+
+
 
         function gameOver() {
             document.getElementById("gameOver").style.display = "block";
