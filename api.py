@@ -1,10 +1,20 @@
 #Flask, fill up the functions below
 
 from flask import Flask, request, jsonify, session, redirect, url_for
-from flask_mysqldb import MySQL
-from werkzeug.utils import secure_filename
-from flask_cors import CORS, cross_origin
+from flask_bcrypt import Bcrypt
+from flask_cors import cross_origin
+from flask_sqlalchemy import SQLAlchemy
 import os
+
+#Initialise Flask Application and configure the Bcrypt extension
+app = Flask(__name__)
+bcrypt = Bcrypt(app)
+
+#Configuring SQLite
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
 
 
 def handle_options(response):
