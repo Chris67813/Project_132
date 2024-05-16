@@ -4,101 +4,109 @@
   <title>Basic Snake HTML Game</title>
   <meta charset="UTF-8">
   <style>
-  html, body {
-    height: 100%;
-    margin: 0;
-  }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
 
-  body {
-    background-image: url('https://cdn.tutsplus.com/mobile/uploads/legacy/Corona-SDK_Build-A-Snake-Game/1/6.png');
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
-  canvas {
-    border: 1px solid white;
-  }
-  #coins {
-    color: white;
-    font-size: 24px;
-    position: absolute;
-    top: 10px;
-    left: 10px;
-  }
-  #timer {
-    color: white;
-    font-size: 24px;
-    position: absolute;
-    top: 10px;
-    right: 10px;
-  }
+    body {
+      background-image: url('https://cdn.tutsplus.com/mobile/uploads/legacy/Corona-SDK_Build-A-Snake-Game/1/6.png');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    canvas {
+      border: 1px solid white;
+    }
+    #coins {
+      color: white;
+      font-size: 24px;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+    }
+    #timer {
+      color: white;
+      font-size: 24px;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
 
-  #homepage-btn {
-    margin-top: 20px;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+    #homepage-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  #mute-btn {
-    position: absolute;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-  }
+    #mute-btn {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
 
-  /* Modal styles */
-  .modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
+    #volume-control {
+      position: absolute;
+      bottom: 20px;
+      right: 20px;
+    }
+    #volume-control label {
+      color: white;
+    }
 
-  .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    text-align: center; /* Center the text */
-  }
+    /* Modal styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed; /* Stay in place */
+      z-index: 1; /* Sit on top */
+      left: 0;
+      top: 0;
+      width: 100%; /* Full width */
+      height: 100%; /* Full height */
+      overflow: auto; /* Enable scroll if needed */
+      background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    }
 
-  /* Center buttons */
-  .modal-content button {
-    display: block;
-    margin: 10px auto;
-  }
+    .modal-content {
+      background-color: #fefefe;
+      margin: 15% auto; /* 15% from the top and centered */
+      padding: 20px;
+      border: 1px solid #888;
+      width: 80%; /* Could be more or less, depending on screen size */
+      text-align: center; /* Center the text */
+    }
 
-  /* Close button */
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
+    /* Center buttons */
+    .modal-content button {
+      display: block;
+      margin: 10px auto;
+    }
 
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-  }
+    /* Close button */
+    .close {
+      color: #aaa;
+      float: right;
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-<audio id="bg-music" autoplay loop> <source src="https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/ateapill.ogg"> Your browser does not support the audio element. </audio>
+<audio id="bg-music" autoplay loop> <source src="https://www.myinstants.com/media/sounds/doors-elevator-music.mp3"> Your browser does not support the audio element. </audio>
 <audio id="eat-sound">
   <source src="https://commondatastorage.googleapis.com/codeskulptor-assets/jump.ogg" type="audio/mpeg">
   Your browser does not support the audio element.
@@ -108,6 +116,10 @@
 <div id="timer">Time: 30</div>
 <button id="homepage-btn">Return to Homepage</button> <!-- Added button -->
 <button id="mute-btn">Mute</button> <!-- Mute button -->
+<div id="volume-control">
+  <label for="volume-slider">Volume:</label>
+  <input type="range" id="volume-slider" min="0" max="1" step="0.01" value="1">
+</div>
 
 <!-- Modal -->
 <div id="myModal" class="modal">
@@ -131,6 +143,7 @@ var resetBtn = document.getElementById('reset-btn');
 var homepageBtn = document.getElementById('homepage-btn');
 var modalHomepageBtn = document.getElementById('modal-homepage-btn'); // Added variable
 var muteBtn = document.getElementById('mute-btn'); // Mute button
+var volumeSlider = document.getElementById('volume-slider'); // Volume slider
 
 var bgMusic = document.getElementById('bg-music');
 var eatSound = document.getElementById('eat-sound');
@@ -258,7 +271,7 @@ function resetGame() {
 }
 
 function returnToHomepage() {
-  window.location.href = ''; // gonna replace with our homepage url
+  window.location.href = ''; // Replace with your homepage URL
 }
 
 function toggleMute() {
@@ -270,6 +283,12 @@ function toggleMute() {
     bgMusic.play();
     muteBtn.textContent = 'Mute';
   }
+}
+
+function adjustVolume() {
+  var volume = volumeSlider.value;
+  bgMusic.volume = volume;
+  eatSound.volume = volume;
 }
 
 document.addEventListener('keydown', function (e) {
@@ -292,6 +311,8 @@ resetBtn.addEventListener('click', resetGame);
 homepageBtn.addEventListener('click', returnToHomepage);
 modalHomepageBtn.addEventListener('click', returnToHomepage); // Added event listener
 muteBtn.addEventListener('click', toggleMute); // Mute button event listener
+volumeSlider.addEventListener('input', adjustVolume); // Volume slider event listener
+
 var closeBtn = document.getElementsByClassName('close')[0];
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
