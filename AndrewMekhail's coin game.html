@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <title>Coin Flip Game</title>
     <style>
         body {
@@ -13,7 +15,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            position: relative; /* Added position relative for absolute positioning of coins */
+            position: relative;
         }
 
         .container {
@@ -42,8 +44,18 @@
         .chosen {
             border: 2px solid blue;
         }
+
+        #resultImage {
+            display: none;
+            margin-top: 10px;
+            max-width: 200px;
+            max-height: 200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <h1>Coin Flip Game</h1>
@@ -53,16 +65,22 @@
             <button onclick="returnToHomepage()">Return to Homepage</button>
         </div>
         <p id="instructions">Choose heads or tails and click "Flip Coin" to see if you win!</p>
+        <img id="resultImage" src="" alt="Result Image">
         <div id="choiceButtons">
             <button id="headsBtn" onclick="setChoice('Heads')">Heads</button>
             <button id="tailsBtn" onclick="setChoice('Tails')">Tails</button>
+        </div>
+        <div id="coinGIF" style="display: none;">
+            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230527151013/Coin-toss-gif-(1).gif"
+                alt="Coin Flip" width="200">
         </div>
         <div class="result" id="result"></div>
         <button onclick="flipCoin()" id="flipBtn">Flip Coin</button>
         <div class="coins" id="coins">Coins: <span id="coinCount">0</span></div>
         <div id="roundCounter">Round: 1/5</div>
-
     </div>
+
+    <audio id="backgroundMusic" autoplay loop> <source src="https://www.myinstants.com/media/sounds/doors-elevator-music.mp3"> Your browser does not support the audio element. </audio>
 
     <script>
         let coins = 0; // Initialize coins counter
@@ -84,31 +102,48 @@
             }
 
             const resultElement = document.getElementById("result");
-            const randomNumber = Math.random();
-            let result;
+            const coinGIF = document.getElementById("coinGIF");
+            const resultImage = document.getElementById("resultImage");
+            resultImage.style.display = "none"; // Hide the result image
+            coinGIF.style.display = "block"; // Display the GIF
 
-            if (randomNumber < 0.5) {
-                result = "Heads";
-            } else {
-                result = "Tails";
-            }
+            setTimeout(() => {
+                coinGIF.style.display = "none"; // Hide the GIF after 1 second
 
-            resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
+                const randomNumber = Math.random();
+                let result;
 
-            if (choice === result) {
-                resultElement.innerText += ". You win 5 coins!";
-                coins += 5; // Update coins if user wins
-                document.getElementById("coinCount").innerText = coins; // Update coins display
-            }
+                if (randomNumber < 0.5) {
+                    result = "Heads";
+                    resultImage.src = "https://www.ramint.gov.au/sites/default/files/2023/2023_the-queen-elizabeth-ii-memorial-obv-standard-round-1-and-2-albr-unc.jpg";
+                } else {
+                    result = "Tails";
+                    resultImage.src = "https://m.media-amazon.com/images/I/51bcZy+HZpL._AC_UF894,1000_QL80_.jpg";
+                }
 
-            flips++; // Increment flips counter
+                resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
+                resultImage.style.display = "block"; // Display the result image
 
-            if (flips === 5) {
-                gameOver();
-            } else {
-                document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
-                round++;
-            }
+                if (choice === result) {
+                    resultElement.innerText += ". You win 5 coins!";
+                    coins += 5; // Update coins if user wins
+                    document.getElementById("coinCount").innerText = coins; // Update coins display
+                }
+
+                flips++; // Increment flips counter
+
+                if (flips === 5) {
+                    gameOver();
+                } else {
+                    document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
+                    round++;
+                }
+
+                // Hide the result image after 3 seconds
+                setTimeout(() => {
+                    resultImage.style.display = "none";
+                }, 3000);
+            }, 1000); // Wait for 1 second before revealing the result
         }
 
         function gameOver() {
@@ -119,17 +154,22 @@
             document.getElementById("flipBtn").style.display = "none";
             document.getElementById("instructions").style.display = "none";
             document.getElementById("roundCounter").style.display = "none";
+            document.getElementById("resultImage").style.display = "none";
         }
 
         function returnToHomepage() {
             // Add your code to redirect to the homepage or perform any other action
             alert("Returning to homepage!");
         }
+
+        // Play background music when the page loads
+        window.onload = () => {
+            document.getElementById("backgroundMusic").play();
+        }
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+    </script>
 </body>
+
 </html>
-
-
-
-
