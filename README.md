@@ -3,7 +3,7 @@ Each user we need to register to create their own DogeGames account on their fir
 (currently) they can play one of four games to start earning coins. The Quiz, Coin Flip, Snake or Paper Scissors Rock. They can then visit the shop and browse through the 
 library of NFTs that are available for purchase (a dynamic library that will periodically be updated with new NFTs). The customer can then “put in the request” to purchase the NFT. 
 If the user has sufficient funds, the transaction can proceed. The user can then visit the library of their NFTs or check the current rank on the leaderboard. As the user purchases more 
-NFTs, they will increase in the leaderboard rankings.
+NFTs, they will increase in the leaderboard rankings. 
 
 Student ID || Student Name    || GitHub Username
 23775973   || Andrew Mekhail  || AndrewMekhail
