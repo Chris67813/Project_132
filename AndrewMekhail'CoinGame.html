@@ -60,6 +60,10 @@
         <div id="coinGIF" style="display: none;">
             <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230527151013/Coin-toss-gif-(1).gif" alt="Coin Flip" width="200">
         </div>
+        <div id="coinResultImages" style="display: none;">
+            <img id="headsResultImage" src="https://w7.pngwing.com/pngs/47/715/png-transparent-gold-coin-royal-australian-mint-silver-coin-gold-coin-head-gold.png" alt="Heads" width="200">
+            <img id="tailsResultImage" src="https://cdn-cbjap.nitrocdn.com/MuKjmHHANsoXALXayLhjhVNnrMqIyodh/assets/images/optimized/rev-61b56e0/wp-content/uploads/2021/03/20-cent-coin-400x400.jpg" alt="Tails" width="200">
+        </div>
         <div class="result" id="result"></div>
         <button onclick="flipCoin()" id="flipBtn">Flip Coin</button>
         <div class="coins" id="coins">Coins: <span id="coinCount">0</span></div>
@@ -87,11 +91,14 @@
         
             const resultElement = document.getElementById("result");
             const coinGIF = document.getElementById("coinGIF");
+            const coinResultImages = document.getElementById("coinResultImages");
             coinGIF.style.display = "block"; // Display the GIF
+            coinResultImages.style.display = "none"; // Hide the result images
         
             setTimeout(() => {
                 coinGIF.style.display = "none"; // Hide the GIF after 1 second
-        
+                coinResultImages.style.display = "block"; // Display the appropriate result image
+                
                 const randomNumber = Math.random();
                 let result;
         
@@ -102,7 +109,6 @@
                 }
         
                 resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
-        
                 if (choice === result) {
                     resultElement.innerText += ". You win 5 coins!";
                     coins += 5; // Update coins if user wins
@@ -119,7 +125,6 @@
                 }
             }, 1000); // Wait for 1 second before revealing the result
         }
-
 
 
         function gameOver() {
