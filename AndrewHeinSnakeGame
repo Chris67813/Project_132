@@ -16,7 +16,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column; /* Add this to allow the column layout */
+    flex-direction: column;
   }
   canvas {
     border: 1px solid white;
@@ -38,6 +38,16 @@
 
   #homepage-btn {
     margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+
+  #mute-btn {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
@@ -88,10 +98,16 @@
   </style>
 </head>
 <body>
+<audio id="bg-music" autoplay loop> <source src="https://commondatastorage.googleapis.com/codeskulptor-demos/pyman_assets/ateapill.ogg"> Your browser does not support the audio element. </audio>
+<audio id="eat-sound">
+  <source src="https://commondatastorage.googleapis.com/codeskulptor-assets/jump.ogg" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
 <canvas width="500" height="500" id="game"></canvas>
 <div id="coins">Coins: 0</div>
 <div id="timer">Time: 30</div>
 <button id="homepage-btn">Return to Homepage</button> <!-- Added button -->
+<button id="mute-btn">Mute</button> <!-- Mute button -->
 
 <!-- Modal -->
 <div id="myModal" class="modal">
@@ -114,14 +130,20 @@ var modalText = document.getElementById('modal-text');
 var resetBtn = document.getElementById('reset-btn');
 var homepageBtn = document.getElementById('homepage-btn');
 var modalHomepageBtn = document.getElementById('modal-homepage-btn'); // Added variable
+var muteBtn = document.getElementById('mute-btn'); // Mute button
 
-// Load snake head, body, and apple images
+var bgMusic = document.getElementById('bg-music');
+var eatSound = document.getElementById('eat-sound');
+
+var isMuted = false; // Track mute state
+
+// Load snake head, body and apple images
 var snakeHeadImg = new Image();
 snakeHeadImg.src = 'https://www.simplilearn.com/ice9/free_resources_article_thumb/Shyamli/Dogecoin.png';
 var snakeBodyImg = new Image();
 snakeBodyImg.src = 'https://www.simplilearn.com/ice9/free_resources_article_thumb/Shyamli/Dogecoin.png';
 var appleImg = new Image();
-appleImg.src = 'https://cdn-icons-png.flaticon.com/512/415/415733.png'; // URL to the apple image
+appleImg.src = 'https://cdn-icons-png.flaticon.com/512/415/415733.png';
 
 var grid = 20;
 var coins = 0;
@@ -201,6 +223,10 @@ function loop() {
       coinsDisplay.textContent = 'Coins: ' + coins;
       apple.x = getRandomInt(0, 25) * grid;
       apple.y = getRandomInt(0, 25) * grid;
+
+      if (!isMuted) {
+        eatSound.play();
+      }
     }
 
     for (var i = index + 1; i < snake.cells.length; i++) {
@@ -216,6 +242,7 @@ function endGame() {
   clearInterval(timerInterval);
   modalText.textContent = 'Game Over!\nTotal Coins Collected: ' + coins;
   modal.style.display = 'block';
+  bgMusic.pause();
 }
 
 function resetGame() {
@@ -225,10 +252,24 @@ function resetGame() {
   coinsDisplay.textContent = 'Coins: ' + coins;
   timerDisplay.textContent = 'Time: ' + time;
   startGame();
+  if (!isMuted) {
+    bgMusic.play();
+  }
 }
 
 function returnToHomepage() {
-  window.location.href = 'your-homepage-url.html'; // Replace with your homepage URL
+  window.location.href = ''; // gonna replace with our homepage url
+}
+
+function toggleMute() {
+  isMuted = !isMuted;
+  if (isMuted) {
+    bgMusic.pause();
+    muteBtn.textContent = 'Unmute';
+  } else {
+    bgMusic.play();
+    muteBtn.textContent = 'Mute';
+  }
 }
 
 document.addEventListener('keydown', function (e) {
@@ -250,6 +291,7 @@ document.addEventListener('keydown', function (e) {
 resetBtn.addEventListener('click', resetGame);
 homepageBtn.addEventListener('click', returnToHomepage);
 modalHomepageBtn.addEventListener('click', returnToHomepage); // Added event listener
+muteBtn.addEventListener('click', toggleMute); // Mute button event listener
 var closeBtn = document.getElementsByClassName('close')[0];
 closeBtn.addEventListener('click', function() {
   modal.style.display = 'none';
