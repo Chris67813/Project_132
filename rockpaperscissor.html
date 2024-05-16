@@ -1,226 +1,255 @@
 <DOCTYPE html>
-<!-- Coding By CodingNepal - codingnepalweb.com -->
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>JavaScript Game | Rock Paper Scissors</title>
     <style>
         @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f6f7fb;
-}
-::selection {
-  color: #fff;
-  background-color: #7d2ae8;
-}
-.container {
-  padding: 2rem 7rem;
-  border-radius: 14px;
-  background: #fff;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-}
-.result_images {
-  display: flex;
-  column-gap: 7rem;
-}
-.container.start .user_result {
-  transform-origin: left;
-  animation: userShake 0.7s ease infinite;
-}
-@keyframes userShake {
-  50% {
-    transform: rotate(10deg);
-  }
-}
-.container.start .cpu_result {
-  transform-origin: right;
-  animation: cpuShake 0.7s ease infinite;
-}
-@keyframes cpuShake {
-  50% {
-    transform: rotate(-10deg);
-  }
-}
-.result_images img {
-  width: 100px;
-}
-.user_result img {
-  transform: rotate(90deg);
-}
-.cpu_result img {
-  transform: rotate(-90deg) rotateY(180deg);
-}
-.result {
-  text-align: center;
-  font-size: 2rem;
-  color: #7d2ae8;
-  margin-top: 1.5rem;
-}
-.option_image img {
-  width: 50px;
-}
-.option_images {
-  display: flex;
-  align-items: center;
-  margin-top: 2.5rem;
-  justify-content: space-between;
-}
-.container.start .option_images {
-  pointer-events: none;
-}
-.option_image {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  opacity: 0.5;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.option_image:hover {
-  opacity: 1;
-}
-.option_image.active {
-  opacity: 1;
-}
-.option_image img {
-  pointer-events: none;
-}
-.option_image p {
-  color: #7d2ae8;
-  font-size: 1.235rem;
-  margin-top: 1rem;
-  pointer-events: none;
-}
-
-.round-counter {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 20px;
-    text-align: center;
-    color: #333;
-  }
-  
-  .final-result {
-    font-size: 24px;
-    font-weight: bold;
-    color: #ff6f61;
-  }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+        body {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: url('https://images.unsplash.com/photo-1560131324-735a23ea0304?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+            background-size: cover;
+        }
+        ::selection {
+            color: #fff;
+            background-color: #7d2ae8;
+        }
+        .container {
+            padding: 2rem 7rem;
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .result_images {
+            display: flex;
+            column-gap: 7rem;
+        }
+        .container.start .user_result {
+            transform-origin: left;
+            animation: userShake 0.7s ease infinite;
+        }
+        @keyframes userShake {
+            50% {
+                transform: rotate(10deg);
+            }
+        }
+        .container.start .cpu_result {
+            transform-origin: right;
+            animation: cpuShake 0.7s ease infinite;
+        }
+        @keyframes cpuShake {
+            50% {
+                transform: rotate(-10deg);
+            }
+        }
+        .result_images img {
+            width: 100px;
+        }
+        .user_result img {
+            transform: rotate(90deg);
+        }
+        .cpu_result img {
+            transform: rotate(-90deg) rotateY(180deg);
+        }
+        .result {
+            text-align: center;
+            font-size: 2rem;
+            color: #7d2ae8;
+            margin-top: 1.5rem;
+        }
+        .option_image img {
+            width: 50px;
+        }
+        .option_images {
+            display: flex;
+            align-items: center;
+            margin-top: 2.5rem;
+            justify-content: space-between;
+        }
+        .container.start .option_images {
+            pointer-events: none;
+        }
+        .option_image {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity 0.3s ease;
+        }
+        .option_image:hover {
+            opacity: 1;
+        }
+        .option_image.active {
+            opacity: 1;
+        }
+        .option_image img {
+            pointer-events: none;
+        }
+        .option_image p {
+            color: #7d2ae8;
+            font-size: 1.235rem;
+            margin-top: 1rem;
+            pointer-events: none;
+        }
+        .round-counter {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+        .final-result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #ff6f61;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <section class="container">
-      <div class="round-counter">ROUND 1/5</div>
-      <div class="result_field">
-        <div class="result_images">
-          <span class="user_result">
-            <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
-          </span>
-          <span class="cpu_result">
-            <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
-          </span>
+        <div class="round-counter">ROUND 1/5</div>
+        <div class="result_field">
+            <div class="result_images">
+                <span class="user_result">
+                    <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
+                </span>
+                <span class="cpu_result">
+                    <img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" />
+                </span>
+            </div>
+            <div class="result">Let's Play!!</div>
         </div>
-        <div class="result">Let's Play!!</div>
-      </div>
-      <div class="option_images">
-        <span class="option_image">
-          <img src="https://m.media-amazon.com/images/I/51rOMX5z40L.jpg" alt="" />
-          <p>Rock</p>
-        </span>
-        <span class="option_image">
-          <img src="https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg" alt="" />
-          <p>Paper</p>
-        </span>
-        <span class="option_image">
-          <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
-          <p>Scissors</p>
-        </span>
-      </div>
+        <div class="option_images">
+            <span class="option_image">
+                <img src="https://m.media-amazon.com/images/I/51rOMX5z40L.jpg" alt="" />
+                <p>Rock</p>
+            </span>
+            <span class="option_image">
+                <img src="https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg" alt="" />
+                <p>Paper</p>
+            </span>
+            <span class="option_image">
+                <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
+                <p>Scissors</p>
+            </span>
+        </div>
     </section>
     <script>
         const gameContainer = document.querySelector(".container"),
-  userResult = document.querySelector(".user_result img"),
-  cpuResult = document.querySelector(".cpu_result img"),
-  result = document.querySelector(".result"),
-  optionImages = document.querySelectorAll(".option_image"),
-  roundCounter = document.querySelector(".round-counter");
+            userResult = document.querySelector(".user_result img"),
+            cpuResult = document.querySelector(".cpu_result img"),
+            result = document.querySelector(".result"),
+            optionImages = document.querySelectorAll(".option_image"),
+            roundCounter = document.querySelector(".round-counter");
 
-let roundCount = 0;
-const maxRounds = 5;
-const coinsPerWin = 2;
-let coinsWon = 0;
+        let roundCount = 0;
+        const maxRounds = 5;
+        const coinsPerWin = 2;
+        let coinsWon = 0;
 
-optionImages.forEach((image, index) => {
-  image.addEventListener("click", (e) => {
-    if (roundCount >= maxRounds) {
-      return;
-    }
+        const cpuWinSounds = [
+            "https://www.myinstants.com/media/sounds/vine-boom-sound-effect.mp3",
+            "https://www.myinstants.com/media/sounds/taco-bell-bong-sound.mp3",
+        ];
 
-    image.classList.add("active");
-    userResult.src = cpuResult.src = "images/rock.png";
-    result.textContent = "Wait...";
+        const userWinSounds = [
+            "https://www.myinstants.com/media/sounds/rizz-sound-effect.mp3",
+            "https://www.myinstants.com/media/sounds/anime-wow.mp3",
+            "https://www.myinstants.com/media/sounds/daddyy-chill.mp3",
+        ];
 
-    optionImages.forEach((image2, index2) => {
-      index !== index2 && image2.classList.remove("active");
-    });
+        const drawSounds = [
+            "https://www.myinstants.com/media/sounds/mac-quack.mp3",
+            "https://www.myinstants.com/media/sounds/you-promised-my-son-free-robux.mp3",
+        ];
 
-    gameContainer.classList.add("start");
+        function playRandomSound(soundsArray) {
+            const randomIndex = Math.floor(Math.random() * soundsArray.length);
+            const audio = new Audio(soundsArray[randomIndex]);
+            audio.play();
+        }
 
-    let time = setTimeout(() => {
-      gameContainer.classList.remove("start");
+        optionImages.forEach((image, index) => {
+            image.addEventListener("click", (e) => {
+                if (roundCount >= maxRounds) {
+                    return;
+                }
 
-      let imageSrc = e.target.querySelector("img").src;
-      userResult.src = imageSrc;
+                image.classList.add("active");
+                userResult.src = cpuResult.src = "https://t3.ftcdn.net/jpg/02/06/23/62/360_F_206236254_hOlipDEe1eNBZqdza2Uj55srBupC10yZ.jpg";
+                result.textContent = "Wait...";
 
-      let randomNumber = Math.floor(Math.random() * 3);
-      let cpuImages = ["https://m.media-amazon.com/images/I/51rOMX5z40L.jpg", "https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg", "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1"];
-      cpuResult.src = cpuImages[randomNumber];
+                optionImages.forEach((image2, index2) => {
+                    index !== index2 && image2.classList.remove("active");
+                });
 
-      let cpuValue = ["R", "P", "S"][randomNumber];
-      let userValue = ["R", "P", "S"][index];
+                gameContainer.classList.add("start");
 
-      let outcomes = {
-        RR: "Draw",
-        RP: "Cpu",
-        RS: "User",
-        PP: "Draw",
-        PR: "User",
-        PS: "Cpu",
-        SS: "Draw",
-        SR: "Cpu",
-        SP: "User",
-      };
+                let time = setTimeout(() => {
+                    gameContainer.classList.remove("start");
 
-      let outComeValue = outcomes[userValue + cpuValue];
-      result.textContent = userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+                    let imageSrc = e.target.querySelector("img").src;
+                    userResult.src = imageSrc;
 
-      if (outComeValue === "User") {
-        coinsWon += coinsPerWin;
-      }
+                    let randomNumber = Math.floor(Math.random() * 3);
+                    let cpuImages = [
+                        "https://m.media-amazon.com/images/I/51rOMX5z40L.jpg",
+                        "https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg",
+                        "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1",
+                    ];
+                    cpuResult.src = cpuImages[randomNumber];
 
-      roundCount++;
-      if (roundCount <= maxRounds) {
-        roundCounter.textContent = `ROUND ${roundCount}/${maxRounds}`;
-      }
-      if (roundCount === maxRounds) {
-        result.textContent = `You won ${coinsWon} coins!`;
-        result.classList.add("final-result");
-      }
-    }, 2500);
-  });
-});
+                    let cpuValue = ["R", "P", "S"][randomNumber];
+                    let userValue = ["R", "P", "S"][index];
 
+                    let outcomes = {
+                        RR: "Draw",
+                        RP: "Cpu",
+                        RS: "User",
+                        PP: "Draw",
+                        PR: "User",
+                        PS: "Cpu",
+                        SS: "Draw",
+                        SR: "Cpu",
+                        SP: "User",
+                    };
+
+                    let outComeValue = outcomes[userValue + cpuValue];
+                    result.textContent =
+                        userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+
+                    if (outComeValue === "User") {
+                        coinsWon += coinsPerWin;
+                        playRandomSound(userWinSounds);
+                    } else if (outComeValue === "Cpu") {
+                        playRandomSound(cpuWinSounds);
+                    } else if (outComeValue === "Draw") {
+                        playRandomSound(drawSounds);
+                    }
+
+                    roundCount++;
+                    if (roundCount <= maxRounds) {
+                        roundCounter.textContent = `ROUND ${roundCount}/${maxRounds}`;
+                    }
+                    if (roundCount === maxRounds) {
+                        result.textContent = `You won ${coinsWon} coins!`;
+                        result.classList.add("final-result");
+                    }
+                }, 2500);
+            });
+        });
     </script>
-  </body>
+</body>
 </html>
