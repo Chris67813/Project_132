@@ -57,10 +57,10 @@
             width: 100px;
         }
         .user_result img {
-            transform: rotate(90deg);
+            transform: rotate(90deg) scaleX(-1); /* Rotate the image and mirror it across its x-axis */
         }
         .cpu_result img {
-            transform: rotate(-90deg) rotateY(180deg);
+            transform: rotate(-90deg); /* Rotate the image and mirror it across its x-axis */
         }
         .result {
             text-align: center;
@@ -144,6 +144,10 @@
                 <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
                 <p>Scissors</p>
             </span>
+        </div>
+        <div style="text-align: center;"> <!-- Centering container -->
+            <div id="result"></div> 
+            <button id="returnButton" onclick="returnToHomepage()" style="display: none; margin: 0 auto;">Return to Homepage</button>
         </div>
     </section>
     <script>
@@ -246,10 +250,15 @@
                     if (roundCount === maxRounds) {
                         result.textContent = `You won ${coinsWon} coins!`;
                         result.classList.add("final-result");
+                        document.getElementById("returnButton").style.display = "block";
                     }
                 }, 2500);
             });
         });
+        function returnToHomepage() {
+            // Add your code to redirect to the homepage or perform any other action
+            alert("Returning to homepage!");
+        }
     </script>
 </body>
 </html>
