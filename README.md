@@ -6,7 +6,11 @@ If the user has sufficient funds, the transaction can proceed. The user can then
 NFTs, they will increase in the leaderboard rankings. 
 
 Student ID || Student Name    || GitHub Username
+
 23775973   || Andrew Mekhail  || AndrewMekhail
+
 23485147   || Rifqi Rahman    || rr1904
+
 23324022   || Chit Thway      || Chris67813
+
 23318983   || Kyaw Paing Hein || AndrewHein999
