@@ -55,10 +55,24 @@ class QuestImage(db.Model):
     filename = db.Column(db.String(100))
 
 class Played(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    quest_id = db.Column(db.Integer, db.ForeignKey('quest.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    answered = db.Column(db.String(200), nullable=True)
 
-class Store(db.Model):                     
+class Store(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    price = db.Column(db.Integer)                               
+    name = db.Column(db.String(100))                            
+    description = db.Column(db.String(200))                     
+    category = db.Column(db.String(100))                     
 
 class Transaction(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    store_id = db.Column(db.Integer, db.ForeignKey('store.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    status = db.Column(db.String(100))
 
 #Initialising the Database
 @app.before_first_request
