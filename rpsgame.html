@@ -71,251 +71,115 @@
     }
   </style>
 
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-  * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Poppins", sans-serif;
-  }
-  body {
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
- 
-  }
-  ::selection {
-      color: #fff;
-      background-color: #7d2ae8;
-  }
-  .container {
-      padding: 2rem 7rem;
-      border-radius: 14px;
-      background: #fff;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  }
-  .result_images {
-      display: flex;
-      column-gap: 7rem;
-  }
-  .container.start .user_result {
-      transform-origin: left;
-      animation: userShake 0.7s ease infinite;
-  }
-  @keyframes userShake {
-      50% {
-          transform: rotate(10deg);
-      }
-  }
-  .container.start .cpu_result {
-      transform-origin: right;
-      animation: cpuShake 0.7s ease infinite;
-  }
-  @keyframes cpuShake {
-      50% {
-          transform: rotate(-10deg);
-      }
-  }
-  .result_images img {
-      width: 100px;
-  }
-  .user_result img {
-      transform: rotate(90deg) scaleX(-1); /* Rotate the image and mirror it across its x-axis */
-  }
-  .cpu_result img {
-      transform: rotate(-90deg); /* Rotate the image and mirror it across its x-axis */
-  }
-  .result {
-      text-align: center;
-      font-size: 2rem;
-      color: #7d2ae8;
-      margin-top: 1.5rem;
-  }
-  .option_image img {
-      width: 50px;
-  }
-  .option_images {
-      display: flex;
-      align-items: center;
-      margin-top: 2.5rem;
-      justify-content: space-between;
-  }
-  .container.start .option_images {
-      pointer-events: none;
-  }
-  .option_image {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      opacity: 0.5;
-      cursor: pointer;
-      transition: opacity 0.3s ease;
-  }
-  .option_image:hover {
-      opacity: 1;
-  }
-  .option_image.active {
-      opacity: 1;
-  }
-  .option_image img {
-      pointer-events: none;
-  }
-  .option_image p {
-      color: #7d2ae8;
-      font-size: 1.235rem;
-      margin-top: 1rem;
-      pointer-events: none;
-  }
-  .round-counter {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 20px;
-      text-align: center;
-      color: #333;
-  }
-  .final-result {
-      font-size: 24px;
-      font-weight: bold;
-      color: #ff6f61;
-  }
-</style>
-
-</head>
-<body>
-  <div class="home">
-    <div class="d-flex gap-4 p-3 mb-3">
-      <div class="card-nav gap-3 d-flex align-items-center p-2 px-4">
-        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 54 54" fill="none">
-          <path d="M33.75 4.5H20.25V9H15.75V22.5H20.25V9H33.75V4.5ZM33.75 22.5H20.25V27H33.75V22.5ZM33.75 9H38.25V22.5H33.75V9ZM9 36H13.5V31.5H40.5V36H13.5V45H40.5V36H45V49.5H9V36Z" fill="#333333"/>
-        </svg>
-        <h6 style="margin: 0;padding: 0;" id="user-name">Anonim</h6>
-      </div>
-      <div class="card-nav gap-3 d-flex align-items-center p-2 px-4">
-        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 54 54" fill="none">
-        <path d="M13.5 4.5H40.5V9H13.5V4.5ZM9 13.5V9H13.5V13.5H9ZM9 40.5V13.5H4.5V40.5H9ZM13.5 45V40.5H9V45H13.5ZM40.5 45V49.5H13.5V45H40.5ZM45 40.5V45H40.5V40.5H45ZM45 13.5H49.5V40.5H45V13.5ZM45 13.5V9H40.5V13.5H45ZM24.75 11.25H29.25V15.75H36V20.25H22.5V24.75H36V38.25H29.25V42.75H24.75V38.25H18V33.75H31.5V29.25H18V15.75H24.75V11.25Z" fill="#FF8900"/>
-        </svg>
-        <h6 style="margin: 0;padding: 0;" id="user-point">-</h6>
-      </div>
-    </div>
-    <div class="box-data px-5 pt-4">
-      <nav class="d-flex justify-content-between">
-        <div class="d-flex gap-4">
-          <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="icon" href="https://img.freepik.com/premium-vector/game-icon-game-symbol-white-gamepad-blue-background-flat-style-vector-eps-10_532800-149.jpg">
-  <title>Coin Flip Game</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
   <style>
-    .act {
-      position: relative;
+    @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
     }
-
-    .act::after {
-      content: "";
-      position: absolute;
-      width: 60%;
-      height: 2px;
-      background: #28888F;
-      bottom: 0;
-      left: 0;
-      border-radius: 1px;
-      transition: all 0.3s ease-in-out;
-      left: 20%;
-      bottom: -3px;
+    body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-
-    .card-nav {
-      height: 45px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.60);
-      box-shadow: 0px 4px 14px 0px rgba(2, 5, 32, 0.75);
-      backdrop-filter: blur(12.5px);
+    ::selection {
+        color: #fff;
+        background-color: #7d2ae8;
     }
-
-    h3 {
-      color: #28888F;
-      font-family: Roboto;
-      font-weight: bold;
-    }
-    
-    .btn-form {
-      color: white;
-      background-color: #28888F;
-    }
-
-    .btn-form:hover {
-      background: #1e7177;
-      color: rgb(226, 226, 226);
-    }
-
-    .home {
-      width: 100%;
-      height: 100vh;
-    }
-
-    .box-data {
-      width: 100%;
-      min-height: 85vh;
-      border-radius: 24px 24px 0px 0px;
-      background: #FFF;
-      box-shadow: 0px 4px 17px 0px rgba(2, 5, 32, 0.45);
-    }
-
-        
     .container {
-        text-align: center;
-        position: relative;
-        z-index: 1;
-        background-color: rgba(255, 255, 255, 0.7); /* Background color with opacity */
-        padding: 20px;
-        border-radius: 10px;
+        padding: 2rem 7rem;
+        border-radius: 14px;
+        background: #fff;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     }
-
-    button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        margin: 5px;
+    .result_images {
+        display: flex;
+        justify-content: center;
+        column-gap: 7rem;
     }
-
+    .container.start .user_result {
+        transform-origin: left;
+        animation: userShake 0.7s ease infinite;
+    }
+    @keyframes userShake {
+        50% {
+            transform: rotate(10deg);
+        }
+    }
+    .container.start .cpu_result {
+        transform-origin: right;
+        animation: cpuShake 0.7s ease infinite;
+    }
+    @keyframes cpuShake {
+        50% {
+            transform: rotate(-10deg);
+        }
+    }
+    .result_images img {
+        width: 100px;
+    }
+    .user_result img {
+        transform: rotate(90deg) scaleX(-1); /* Rotate the image and mirror it across its x-axis */
+    }
+    .cpu_result img {
+        transform: rotate(-90deg); /* Rotate the image and mirror it across its x-axis */
+    }
     .result {
-        margin-top: 20px;
-        font-size: 24px;
+        text-align: center;
+        font-size: 2rem;
+        color: #7d2ae8;
+        margin-top: 1.5rem;
     }
-
-    .coins {
-        position: absolute;
-        top: 20px;
-        right: 20px;
+    .option_image img {
+        width: 50px;
+    }
+    .option_images {
+        display: flex;
+        align-items: center;
+        margin-top: 2.5rem;
+        justify-content: space-between;
+    }
+    .container.start .option_images {
+        pointer-events: none;
+    }
+    .option_image {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0.5;
+        cursor: pointer;
+        transition: opacity 0.3s ease;
+    }
+    .option_image:hover {
+        opacity: 1;
+    }
+    .option_image.active {
+        opacity: 1;
+    }
+    .option_image img {
+        pointer-events: none;
+    }
+    .option_image p {
+        color: #7d2ae8;
+        font-size: 1.235rem;
+        margin-top: 1rem;
+        pointer-events: none;
+    }
+    .round-counter {
         font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color: #333;
     }
-
-    .chosen {
-        border: 2px solid blue;
+    .final-result {
+        font-size: 24px;
+        font-weight: bold;
+        color: #ff6f61;
     }
-
-    #resultImage {
-        display: none;
-        margin-top: 10px;
-        max-width: 200px;
-        max-height: 200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-    </style>  
   </style>
 </head>
 <body>
@@ -337,7 +201,7 @@
     <div class="box-data px-5 pt-4">
       <nav class="d-flex justify-content-between">
         <div class="d-flex gap-4">
-          <a href="home.html" class="fs-5 fw-light nav-link act" >Home</a>
+          <a href="home.html" class="fs-5 fw-light nav-link act">Home</a>
           <a href="quiz.html" class="fs-5 fw-light nav-link">Quiz Game</a>
           <a href="CoinGame.html" class="fs-5 fw-light nav-link">Coin Game</a>
           <a href="SnakeGame.html" class="fs-5 fw-light nav-link">Snake Game</a>
@@ -345,170 +209,6 @@
           <a href="rank.html" class="fs-5 fw-light nav-link">Top Global</a>
           <a href="shop.html" class="fs-5 fw-light nav-link">NFT Shop</a>
           <a href="inventory.html" class="fs-5 fw-light nav-link">Inventory</a>
-
-        </div>
-        <button class="btn btn-outline-danger" id="logout-button">Logout</button>
-      </nav>
-      <hr>
-
-      <div class="container">
-        <h1>Coin Flip Game</h1>
-        <div id="gameOver" style="display: none;">
-            <h1>Game Over!</h1>
-            <h1>Total Coins: <span id="totalCoins">0</span></h1>
-            <button onclick="returnToHomepage()">Return to Homepage</button>
-        </div>
-        <p id="instructions">Choose heads or tails and click "Flip Coin" to see if you win!</p>
-        <img id="resultImage" src="" alt="Result Image">
-        <div id="choiceButtons">
-            <button id="headsBtn" onclick="setChoice('Heads')">Heads</button>
-            <button id="tailsBtn" onclick="setChoice('Tails')">Tails</button>
-        </div>
-        <div id="coinGIF" style="display: none;">
-            <img src="https://media.geeksforgeeks.org/wp-content/uploads/20230527151013/Coin-toss-gif-(1).gif"
-                alt="Coin Flip" width="200">
-        </div>
-        <div class="result" id="result"></div>
-        <button onclick="flipCoin()" id="flipBtn">Flip Coin</button>
-        <div class="coins" id="coins">Coins: <span id="coinCount">0</span></div>
-        <div id="roundCounter">Round: 1/5</div>
-    </div>
-
-    <script>
-        let coins = 0; // Initialize coins counter
-        let flips = 0; // Initialize flips counter
-        let choice = ""; // Initialize user's choice
-        let round = 1; // Initialize round counter
-
-        function setChoice(chosen) {
-            choice = chosen;
-            document.getElementById("headsBtn").classList.remove("chosen");
-            document.getElementById("tailsBtn").classList.remove("chosen");
-            document.getElementById(chosen.toLowerCase() + "Btn").classList.add("chosen");
-        }
-
-        function flipCoin() {
-            if (choice === "") {
-                alert("Please choose either Heads or Tails.");
-                return;
-            }
-
-            const resultElement = document.getElementById("result");
-            const coinGIF = document.getElementById("coinGIF");
-            const resultImage = document.getElementById("resultImage");
-            resultImage.style.display = "none"; // Hide the result image
-            coinGIF.style.display = "block"; // Display the GIF
-
-            setTimeout(() => {
-                coinGIF.style.display = "none"; // Hide the GIF after 1 second
-
-                const randomNumber = Math.random();
-                let result;
-
-                if (randomNumber < 0.5) {
-                    result = "Heads";
-                    resultImage.src = "https://www.aussiecoinsandnotes.com/assets/alt_3/16558.png?20240405144129";
-                } else {
-                    result = "Tails";
-                    resultImage.src = "https://i.ebayimg.com/images/g/H~8AAOSwJLNeVNJc/s-l1200.webp";
-                }
-
-                resultElement.innerText = `You chose: ${choice}. Coin landed on: ${result}`;
-                resultImage.style.display = "block"; // Display the result image
-
-                if (choice === result) {
-                    resultElement.innerText += ". You win 5 coins!";
-                    coins += 5; // Update coins if user wins
-                    document.getElementById("coinCount").innerText = coins; // Update coins display
-                }
-
-                flips++; // Increment flips counter
-
-                if (flips === 5) {
-                    gameOver();
-                } else {
-                    document.getElementById("roundCounter").innerText = `Round: ${round}/${5}`;
-                    round++;
-                }
-
-                // Hide the result image after 10 seconds
-                setTimeout(() => {
-                    resultImage.style.display = "none";
-                }, 10000);
-            }, 1000); // Wait for 1 second before revealing the result
-        }
-
-        function gameOver() {
-            document.getElementById("gameOver").style.display = "block";
-            document.getElementById("totalCoins").innerText = coins;
-            document.getElementById("coins").style.display = "none";
-            document.getElementById("choiceButtons").style.display = "none";
-            document.getElementById("flipBtn").style.display = "none";
-            document.getElementById("instructions").style.display = "none";
-            document.getElementById("roundCounter").style.display = "none";
-            document.getElementById("resultImage").style.display = "none";
-        }
-
-        function returnToHomepage() {
-            window.location.href = "homepage.html";
-        }
-    </script>
-
-
-
-
-
-
-      <br><br>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
-  <script>
-    $(document).ready(function() {
-      // Fetch user data
-      const username = Cookies.get('username');
-      if (username) {
-        $.get(`https://quest-py-36626ab33017.herokuapp.com/api/user/${username}`, function(data) {
-          if (data && data.user) {
-            $('#user-name').text(data.user.name);
-            $('#user-point').text(data.user.point);
-          }
-        });
-      }
-
-
-      // Logout button handler
-      $('#logout-button').click(function() {
-        $.ajax({
-          url: "https://quest-py-36626ab33017.herokuapp.com/api/logout",
-          method: 'GET',
-          success: function() {
-            Swal.fire({
-              title: "Logout!",
-              icon: "success",
-              allowOutsideClick: false,
-              allowEscapeKey: false
-            }).then(() => {
-              window.location.href = 'index.html'; // Redirect to home page
-            });
-          },
-          error: function(err) {
-            console.error(err);
-            Swal.fire({
-              title: "Error!",
-              icon: "error"
-            });
-          }
-        });
-      });
-    });
-  </script>
-</body>
-</html>
-
-
         </div>
         <button class="btn btn-outline-danger" id="logout-button">Logout</button>
       </nav>
@@ -517,44 +217,43 @@
       <section class="container">
         <div class="round-counter">ROUND 1/5</div>
         <div class="result_field">
-            <div class="result_images">
-                
-                <span class="user_result">
-                  <center><img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" /></center>
-                </span>
-                <span class="cpu_result">
-                  <center><img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" /> </center>
-                </span>
-             
-            </div>
-            <div class="result">Let's Play!!</div>
+          <div class="result_images">
+            <span class="user_result">
+              <center><img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" /></center>
+            </span>
+            <span class="cpu_result">
+              <center><img src="https://i1.sndcdn.com/artworks-kJK3FybZbnpcdB9y-zfmVMQ-t500x500.jpg" alt="" /></center>
+            </span>
+          </div>
+          <div class="result">Let's Play!!</div>
         </div>
         <div class="option_images">
-            <span class="option_image">
-                <img src="https://m.media-amazon.com/images/I/51rOMX5z40L.jpg" alt="" />
-                <p>Rock</p>
-            </span>
-            <span class="option_image">
-                <img src="https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg" alt="" />
-                <p>Paper</p>
-            </span>
-            <span class="option_image">
-                <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
-                <p>Scissors</p>
-            </span>
+          <span class="option_image">
+            <img src="https://m.media-amazon.com/images/I/51rOMX5z40L.jpg" alt="" />
+            <p>Rock</p>
+          </span>
+          <span class="option_image">
+            <img src="https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg" alt="" />
+            <p>Paper</p>
+          </span>
+          <span class="option_image">
+            <img src="https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1" alt="" />
+            <p>Scissors</p>
+          </span>
         </div>
-        <div style="text-align: center;"> <!-- Centering container -->
-            <div id="result"></div> 
-            <button id="returnButton" onclick="returnToHomepage()" style="display: none; margin: 0 auto;">Return to Homepage</button>
+        <div style="text-align: center;">
+          <div id="result"></div>
+          <button id="returnButton" onclick="returnToHomepage()" style="display: none; margin: 0 auto;">Return to Homepage</button>
         </div>
-    </section>
-    <script>
+      </section>
+
+      <script>
         const gameContainer = document.querySelector(".container"),
-            userResult = document.querySelector(".user_result img"),
-            cpuResult = document.querySelector(".cpu_result img"),
-            result = document.querySelector(".result"),
-            optionImages = document.querySelectorAll(".option_image"),
-            roundCounter = document.querySelector(".round-counter");
+          userResult = document.querySelector(".user_result img"),
+          cpuResult = document.querySelector(".cpu_result img"),
+          result = document.querySelector(".result"),
+          optionImages = document.querySelectorAll(".option_image"),
+          roundCounter = document.querySelector(".round-counter");
 
         let roundCount = 0;
         const maxRounds = 5;
@@ -562,114 +261,109 @@
         let coinsWon = 0;
 
         const cpuWinSounds = [
-            "https://www.myinstants.com/media/sounds/vine-boom-sound-effect.mp3",
-            "https://www.myinstants.com/media/sounds/taco-bell-bong-sound.mp3",
+          "https://www.myinstants.com/media/sounds/vine-boom-sound-effect.mp3",
+          "https://www.myinstants.com/media/sounds/taco-bell-bong-sound.mp3",
         ];
 
         const userWinSounds = [
-            "https://www.myinstants.com/media/sounds/rizz-sound-effect.mp3",
-            "https://www.myinstants.com/media/sounds/anime-wow.mp3",
-            "https://www.myinstants.com/media/sounds/daddyy-chill.mp3",
+          "https://www.myinstants.com/media/sounds/rizz-sound-effect.mp3",
+          "https://www.myinstants.com/media/sounds/anime-wow.mp3",
+          "https://www.myinstants.com/media/sounds/daddyy-chill.mp3",
         ];
 
         const drawSounds = [
-            "https://www.myinstants.com/media/sounds/mac-quack.mp3",
-            "https://www.myinstants.com/media/sounds/you-promised-my-son-free-robux.mp3",
+          "https://www.myinstants.com/media/sounds/mac-quack.mp3",
+          "https://www.myinstants.com/media/sounds/you-promised-my-son-free-robux.mp3",
         ];
 
         function playRandomSound(soundsArray) {
-            const randomIndex = Math.floor(Math.random() * soundsArray.length);
-            const audio = new Audio(soundsArray[randomIndex]);
-            audio.play();
+          const randomIndex = Math.floor(Math.random() * soundsArray.length);
+          const audio = new Audio(soundsArray[randomIndex]);
+          audio.play();
         }
 
         optionImages.forEach((image, index) => {
-            image.addEventListener("click", (e) => {
-                if (roundCount >= maxRounds) {
-                    return;
-                }
+          image.addEventListener("click", (e) => {
+            if (roundCount >= maxRounds) {
+              return;
+            }
 
-                image.classList.add("active");
-                userResult.src = cpuResult.src = "https://i.pinimg.com/736x/ea/5b/cc/ea5bcc2486d5abf71dda7b70e2493a0f.jpg";
-                result.textContent = "Wait...";
+            image.classList.add("active");
+            userResult.src = cpuResult.src = "https://i.pinimg.com/736x/ea/5b/cc/ea5bcc2486d5abf71dda7b70e2493a0f.jpg";
+            result.textContent = "Wait...";
 
-                optionImages.forEach((image2, index2) => {
-                    index !== index2 && image2.classList.remove("active");
-                });
-
-                gameContainer.classList.add("start");
-
-                let time = setTimeout(() => {
-                    gameContainer.classList.remove("start");
-
-                    let imageSrc = e.target.querySelector("img").src;
-                    userResult.src = imageSrc;
-
-                    let randomNumber = Math.floor(Math.random() * 3);
-                    let cpuImages = [
-                        "https://m.media-amazon.com/images/I/51rOMX5z40L.jpg",
-                        "https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg",
-                        "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1",
-                    ];
-                    cpuResult.src = cpuImages[randomNumber];
-
-                    let cpuValue = ["R", "P", "S"][randomNumber];
-                    let userValue = ["R", "P", "S"][index];
-
-                    let outcomes = {
-                        RR: "Draw",
-                        RP: "Cpu",
-                        RS: "User",
-                        PP: "Draw",
-                        PR: "User",
-                        PS: "Cpu",
-                        SS: "Draw",
-                        SR: "Cpu",
-                        SP: "User",
-                    };
-
-                    let outComeValue = outcomes[userValue + cpuValue];
-                    result.textContent =
-                        userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
-
-                    if (outComeValue === "User") {
-                        coinsWon += coinsPerWin;
-                        playRandomSound(userWinSounds);
-                    } else if (outComeValue === "Cpu") {
-                        playRandomSound(cpuWinSounds);
-                    } else if (outComeValue === "Draw") {
-                        playRandomSound(drawSounds);
-                    }
-
-                    roundCount++;
-                    if (roundCount <= maxRounds) {
-                        roundCounter.textContent = `ROUND ${roundCount}/${maxRounds}`;
-                    }
-                    if (roundCount === maxRounds) {
-                        result.textContent = `You won ${coinsWon} coins!`;
-                        result.classList.add("final-result");
-                        document.getElementById("returnButton").style.display = "block";
-                    }
-                }, 2500);
+            optionImages.forEach((image2, index2) => {
+              index !== index2 && image2.classList.remove("active");
             });
+
+            gameContainer.classList.add("start");
+
+            let time = setTimeout(() => {
+              gameContainer.classList.remove("start");
+
+              let imageSrc = e.target.querySelector("img").src;
+              userResult.src = imageSrc;
+
+              let randomNumber = Math.floor(Math.random() * 3);
+              let cpuImages = [
+                "https://m.media-amazon.com/images/I/51rOMX5z40L.jpg",
+                "https://i.ebayimg.com/images/g/TUMAAOSwjetgr7i~/s-l1600.jpg",
+                "https://res.cloudinary.com/rsc/image/upload/b_rgb:FFFFFF,c_pad,dpr_2.625,f_auto,h_197,q_auto,w_350/c_pad,h_197,w_350/C5099960-06?pgw=1",
+              ];
+              cpuResult.src = cpuImages[randomNumber];
+
+              let cpuValue = ["R", "P", "S"][randomNumber];
+              let userValue = ["R", "P", "S"][index];
+
+              let outcomes = {
+                RR: "Draw",
+                RP: "Cpu",
+                RS: "User",
+                PP: "Draw",
+                PR: "User",
+                PS: "Cpu",
+                SS: "Draw",
+                SR: "Cpu",
+                SP: "User",
+              };
+
+              let outComeValue = outcomes[userValue + cpuValue];
+              result.textContent =
+                userValue === cpuValue ? "Match Draw" : `${outComeValue} Won!!`;
+
+              if (outComeValue === "User") {
+                coinsWon += coinsPerWin;
+                playRandomSound(userWinSounds);
+              } else if (outComeValue === "Cpu") {
+                playRandomSound(cpuWinSounds);
+              } else if (outComeValue === "Draw") {
+                playRandomSound(drawSounds);
+              }
+
+              roundCount++;
+              if (roundCount <= maxRounds) {
+                roundCounter.textContent = `ROUND ${roundCount}/${maxRounds}`;
+              }
+              if (roundCount === maxRounds) {
+                result.textContent = `You won ${coinsWon} coins!`;
+                result.classList.add("final-result");
+                document.getElementById("returnButton").style.display = "block";
+              }
+            }, 2500);
+          });
         });
         function returnToHomepage() {
-            // Add your code to redirect to the homepage or perform any other action
-            alert("Returning to homepage!");
+          // Add your code to redirect to the homepage or perform any other action
+          alert("Returning to homepage!");
         }
-    </script>
-
-
-
-
-
+      </script>
 
       <br><br>
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-  
+
   <script>
     $(document).ready(function() {
       // Fetch user data
@@ -682,7 +376,6 @@
           }
         });
       }
-
 
       // Logout button handler
       $('#logout-button').click(function() {
@@ -711,4 +404,3 @@
     });
   </script>
 </body>
-</html>
