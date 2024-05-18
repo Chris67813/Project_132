@@ -2,24 +2,51 @@
 
 from flask import Flask, request, jsonify, session, redirect, url_for
 from flask_bcrypt import Bcrypt
-from flask_cors import cross_origin
+from flask_cors import CORS, cross_origin
 from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 import os
 
 #Initialise Flask Application and configure the Bcrypt extension
 app = Flask(__name__)
-bcrypt = Bcrypt(app)
+app.secret_key = "SessionSecretKey"  #Session's Secret Key
 
 #Configuring SQLite
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+cors = CORS(app)
 
+UPLOAD_FOLDER = 'uploads'
+app.cofig['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-def handle_options(response):
+if not os.path.exists(app.config['UPLOAD_FOLDER']):
+    os.makedirs(app.config['UPLOAD_FOLDER'])
+
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
 def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.',1)[1].lower() in ALLOWED_EXTENSIONS
+
+#Database Model - please fill these classes in, might be changed is it's different
+class Users(db.Model):
+    
+class Quest(db.Model):
+
+class QuestImage(db.Model):
+
+class Played(db.Model):
+
+class Store(db.Model):                     
+
+class Transaction(db.Model):
+
+#Initialising the Database
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 # Function to perform login
 def login():
