@@ -100,7 +100,6 @@ def login():
             response = jsonify({'error': 'Invalid username or password'})
             response.headers['Cache-Control'] = 'no-cache'
             return response, 401
-    
 
 # function to perform registration
 @app.route('/api/register', methods=['POST'])
@@ -122,7 +121,6 @@ def register():
         response.headers['Cache-Control'] = 'no-cache'
         return response, 201
     
-
 # function to logout
 @app.route('/api/logout', methods=['GET'])
 @cross_origin(supports_credentials=True)
@@ -133,7 +131,6 @@ def logout():
     response.delete_cookie('username')  # delete username's cookie
     return response, 200
     
-
 # function to get user's data by username
 @app.route('/api/user/<username>', methods=['GET'])
 def get_user_by_username(username):
@@ -151,17 +148,71 @@ def get_user_by_username(username):
     else:
         return jsonify({'error': 'User not found'}), 404
     
-
-# Endpoint to add quests
+# Endpoint to add quest
+@app.route('/api/quests', methods=['POST'])
 def add_quest():
-
+    if 'file' not in request.files:
+        return jsonify({'error': 'No file part'}), 400
     
-# Function to update user points by username
+    files = request.files.getlist('file')
+
+    new_quest = Quest(
+        name=request.form['name'],
+        user_id=request.form['user_id'],
+        level=request.form['level'],
+        timeout=request.form['timeout'],
+        created_by=request.form['created_by'],
+        answer=request.form['answer']
+    )
+    db.session.add(new_quest)
+    db.session.commit()
+    quest_id = new_quest.id
+
+    # Save image
+    for file in files:
+        if file and allowed_file(file.filename):
+            filename = secure_filename(file.filename)
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            new_image = QuestImage(quest_id=quest_id, filename=filename)
+            db.session.add(new_image)
+
+    db.session.commit()
+    return jsonify({'message': 'Quest added successfully'}), 201
+
+# function to update user's point based on the username
+@app.route('/api/user/update_point/<username>', methods=['POST'])
 def update_user_point(username):
+    new_point = request.json.get('point')
 
-    
-# Endpoint to get all quests along with images
+    if not isinstance(new_point, int):
+        return jsonify({'error': 'Point must be an integer'}), 400
+
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user.point = new_point
+        db.session.commit()
+        return jsonify({'message': 'User point updated successfully'}), 200
+    else:
+        return jsonify({'error': 'User not found'}), 404
+
+# Endpoint to get all quest along with the images
+@app.route('/api/quests', methods=['GET'])
 def get_quests():
+    quests = Quest.query.all()
+    result = []
+    for quest in quests:
+        images = QuestImage.query.filter_by(quest_id=quest.id).all()
+        image_list = [image.filename for image in images]
+        result.append({
+            'id': quest.id,
+            'name': quest.name,
+            'level': quest.level,
+            'timeout': quest.timeout,
+            'created_by': quest.created_by,
+            'answer': quest.answer,
+            'images': image_list
+        })
+    return jsonify(result), 200
     
 
 # Endpoint to add played data
