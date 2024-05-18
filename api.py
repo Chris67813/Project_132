@@ -216,19 +216,75 @@ def get_quests():
     
 
 # Endpoint to add played data
+@app.route('/api/played', methods=['POST'])
 def add_played():
+    if not request.json or 'quest_id' not in request.json or 'user_id' not in request.json:
+        return jsonify({'error': 'Invalid request format'}), 400
+
+    new_played = Played(
+        quest_id=request.json['quest_id'],
+        user_id=request.json['user_id'],
+        answered=request.json.get('answered', None)
+    )
+    db.session.add(new_played)
+    db.session.commit()
+    return jsonify({'message': 'Data added to played table successfully'}), 201
 
     
-# Endpoint to get data played based on ID    
+# Endpoint to get data played based on ID
+@app.route('/api/played/<int:played_id>', methods=['GET'])
 def get_played_by_id(played_id):
+    played_data = Played.query.get(played_id)
+    if played_data:
+        return jsonify({'played_data': played_data}), 200
+    else:
+        return jsonify({'error': 'Data not found'}), 404
     
 
 # API to get a list of all users and the quests they have played
+@app.route('/api/users', methods=['GET'])
 def get_users_with_quest():
+    users = User.query.order_by(User.point.desc()).all()
+    result = []
+    for user in users:
+        user_quests = Played.query.filter_by(user_id=user.id).all()
+        quests = []
+        for played in user_quests:
+            quest = Quest.query.get(played.quest_id)
+            if quest:
+                quests.append({
+                    'id': quest.id,
+                    'name': quest.name,
+                    'answered': played.answered
+                })
+        result.append({
+            'id': user.id,
+            'name': user.name,
+            'username': user.username,
+            'email': user.email,
+            'balance': user.balance,                
+            'point': user.point,
+            'quests': quests
+        })
+    return jsonify(result), 200
 
     
 # Endpoint to add stores
+@app.route('/api/store', methods=['POST'])
 def add_store():
+    if not request.json:
+        return jsonify({'error': 'Invalid request format'}), 400
+
+    new_store = Store(
+        user_id=request.json['user_id'],
+        price=request.json['price'],                    
+        name=request.json['name'],                      
+        description=request.json['description'],        
+        category=request.json['category']               
+    )
+    db.session.add(new_store)
+    db.session.commit()
+    return jsonify({'message': 'Store added successfully'}), 201
 
 
 # Endpoint to add transaction
