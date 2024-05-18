@@ -67,19 +67,42 @@ def get_user_by_username(username):
 # Endpoint to add quests
 def add_quest():
 
+    
 # Function to update user points by username
 def update_user_point(username):
+
     
 # Endpoint to get all quests along with images
 def get_quests():
     
 
+# Endpoint to add played data
 def add_played():
+
     
+# Endpoint to get data played based on ID    
 def get_played_by_id(played_id):
     
 
 # API to get a list of all users and the quests they have played
 def get_users_with_quest():
 
+    
+# Endpoint to add stores
+def add_store():
+
+
+# Endpoint to add transaction
+def add_transaction():
+
+
+# Endpoint to register store
+def get_store():
+
+
+# Endpoint to get transaction list
+def get_transactions():
+
+
+# Endpoint to load image based on file's name    
 def uploaded_file(filename):
