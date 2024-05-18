@@ -79,20 +79,77 @@ class Transaction(db.Model):
 def create_tables():
     db.create_all()
 
+@app.route('/')
+def index():
+    return "<h1>Flask API</h1>"
+
 # Function to perform login
+@app.route('/api/login', methods=['POST'])
+@cross_origin(supports_credentials=True)
 def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        user = User.query.filter_by(username=username).first()
+        if user and bcrypt.check_password_hash(user.password, password):
+            response = jsonify({'message': 'Login successful', 'username': username})
+            response.headers['Cache-Control'] = 'no-cache'
+            response.set_cookie('username', username)  # saving username into cookie
+            return response, 200
+        else:
+            response = jsonify({'error': 'Invalid username or password'})
+            response.headers['Cache-Control'] = 'no-cache'
+            return response, 401
     
 
-# Function for registration
+# function to perform registration
+@app.route('/api/register', methods=['POST'])
 def register():
+    if request.method == 'POST':
+        name = request.form['name']
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+
+        # Hash password
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
+
+        new_user = User(name=name, username=username, email=email, password=hashed_password)
+        db.session.add(new_user)
+        db.session.commit()
+        response = jsonify({'message': 'Registration successful'})
+        response.headers.add('Access-Control-Allow-Origin', '*')
+        response.headers['Cache-Control'] = 'no-cache'
+        return response, 201
     
 
-# Function for logout
+# function to logout
+@app.route('/api/logout', methods=['GET'])
+@cross_origin(supports_credentials=True)
 def logout():
+    session.pop('username', None)  # delete username from session
+    response = jsonify({'message': 'Logout successful'})
+    response.headers['Cache-Control'] = 'no-cache'
+    response.delete_cookie('username')  # delete username's cookie
+    return response, 200
     
 
-# Function to get user data by username
+# function to get user's data by username
+@app.route('/api/user/<username>', methods=['GET'])
 def get_user_by_username(username):
+    user = User.query.filter_by(username=username).first()
+    if user:
+        user_data = {
+            'id': user.id,
+            'name': user.name,
+            'username': user.username,
+            'email': user.email,
+            'balance': user.balance,                          
+            'point': user.point
+        }
+        return jsonify({'user': user_data}), 200
+    else:
+        return jsonify({'error': 'User not found'}), 404
     
 
 # Endpoint to add quests
