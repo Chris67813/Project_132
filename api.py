@@ -32,10 +32,27 @@ def allowed_file(filename):
 
 #Database Model - please fill these classes in, might be changed is it's different
 class Users(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    username = db.Column(db.String(100), unique=True)
+    email = db.Column(db.String(100), unique=True)
+    password = db.Column(db.String(200))
+    balance = db.Column(db.Integer, default=0)                
+    point = db.Column(db.Integer, default=0)
     
 class Quest(db.Model):
-
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    level = db.Column(db.Integer)
+    timeout = db.Column(db.Integer)
+    created_by = db.Column(db.String(100))
+    answer = db.Column(db.String(200))
+    
 class QuestImage(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    quest_id = db.Column(db.Integer, db.ForeignKey('quest.id'))
+    filename = db.Column(db.String(100))
 
 class Played(db.Model):
 
