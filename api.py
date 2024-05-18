@@ -288,16 +288,59 @@ def add_store():
 
 
 # Endpoint to add transaction
+@app.route('/api/transaction', methods=['POST'])
 def add_transaction():
+    if not request.json:
+        return jsonify({'error': 'Invalid request format'}), 400
 
+    new_transaction = Transaction(
+        store_id=request.json['store_id'],
+        user_id=request.json['user_id'],
+        status=request.json['status']
+    )
+    db.session.add(new_transaction)
+    db.session.commit()
+    return jsonify({'message': 'Transaction added successfully'}), 201
 
 # Endpoint to register store
+
+@app.route('/api/store', methods=['GET'])
 def get_store():
+    stores = Store.query.all()
+    result = []
+    for store in stores:
+        result.append({
+            'id': store.id,
+            'user_id': store.user_id,
+            'price': store.price,             
+            'name': store.name,               
+            'description': store.description, 
+            'category': store.category        
+        })
+    return jsonify(result), 200
 
 
 # Endpoint to get transaction list
+@app.route('/api/transaction', methods=['GET'])
 def get_transactions():
+    transactions = Transaction.query.all()
+    result = []
+    for transaction in transactions:
+        result.append({
+            'id': transaction.id,
+            'store_id': transaction.store_id,
+            'user_id': transaction.user_id,
+            'status': transaction.status
+        })
+    return jsonify(result), 200
 
-
-# Endpoint to load image based on file's name    
+# Endpoint to load image based on file's name
+@app.route('/uploads/<filename>')
 def uploaded_file(filename):
+     return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
+
+
+# running the app
+if __name__ == '__main__':
+    port_nr = int(os.environ.get("PORT", 5001))
+    app.run(port=port_nr, host='0.0.0.0')
