@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="icon" href="https://img.freepik.com/premium-vector/game-icon-game-symbol-white-gamepad-blue-background-flat-style-vector-eps-10_532800-149.jpg">
+  <title>Game : Welcome</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
+  <style>
+    .act {
+      position: relative;
+    }
+
+    .act::after {
+      content: "";
+      position: absolute;
+      width: 60%;
+      height: 2px;
+      background: #28888F;
+      bottom: 0;
+      left: 0;
+      border-radius: 1px;
+      transition: all 0.3s ease-in-out;
+      left: 20%;
+      bottom: -3px;
+    }
+
+    .card-nav {
+      height: 45px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.60);
+      box-shadow: 0px 4px 14px 0px rgba(2, 5, 32, 0.75);
+      backdrop-filter: blur(12.5px);
+    }
+
+    h3 {
+      color: #28888F;
+      font-family: Roboto;
+      font-weight: bold;
+    }
+    
+    .btn-form {
+      color: white;
+      background-color: #28888F;
+    }
+
+    .btn-form:hover {
+      background: #1e7177;
+      color: rgb(226, 226, 226);
+    }
+
+    .home {
+      width: 100%;
+      height: 100vh;
+    }
+
+    .box-data {
+      width: 100%;
+      min-height: 85vh;
+      border-radius: 24px 24px 0px 0px;
+      background: #FFF;
+      box-shadow: 0px 4px 17px 0px rgba(2, 5, 32, 0.45);
+    }
+  </style>
+
+<style>
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  .header {
+    text-align: center;
+    padding: 20px 0;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  .nft-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+  }
+  .nft-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 200px;
+    background-color: #fff;
+  }
+  .nft-card img {
+    max-width: 100%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  .nft-card .info {
+    padding: 10px;
+    text-align: center;
+  }
+  .nft-card .title {
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .nft-card .coins {
+    color: #888;
+    font-size: 14px;
+  }
+  .home-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    background-color: #ff5403;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+  }
+</style>
+
+
+
+</head>
+<body>
+  <div class="home">
+    <div class="d-flex gap-4 p-3 mb-3">
+      <div class="card-nav gap-3 d-flex align-items-center p-2 px-4">
+        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 54 54" fill="none">
+          <path d="M33.75 4.5H20.25V9H15.75V22.5H20.25V9H33.75V4.5ZM33.75 22.5H20.25V27H33.75V22.5ZM33.75 9H38.25V22.5H33.75V9ZM9 36H13.5V31.5H40.5V36H13.5V45H40.5V36H45V49.5H9V36Z" fill="#333333"/>
+        </svg>
+        <h6 style="margin: 0;padding: 0;" id="user-name">Anonim</h6>
+      </div>
+      <div class="card-nav gap-3 d-flex align-items-center p-2 px-4">
+        <svg xmlns="http://www.w3.org/2000/svg" height="100%" viewBox="0 0 54 54" fill="none">
+        <path d="M13.5 4.5H40.5V9H13.5V4.5ZM9 13.5V9H13.5V13.5H9ZM9 40.5V13.5H4.5V40.5H9ZM13.5 45V40.5H9V45H13.5ZM40.5 45V49.5H13.5V45H40.5ZM45 40.5V45H40.5V40.5H45ZM45 13.5H49.5V40.5H45V13.5ZM45 13.5V9H40.5V13.5H45ZM24.75 11.25H29.25V15.75H36V20.25H22.5V24.75H36V38.25H29.25V42.75H24.75V38.25H18V33.75H31.5V29.25H18V15.75H24.75V11.25Z" fill="#FF8900"/>
+        </svg>
+        <h6 style="margin: 0;padding: 0;" id="user-point">-</h6>
+      </div>
+    </div>
+    <div class="box-data px-5 pt-4">
+      <nav class="d-flex justify-content-between">
+        <div class="d-flex gap-4">
+          <a href="home.html" class="fs-5 fw-light nav-link" >Home</a>
+          <a href="quiz.html" class="fs-5 fw-light nav-link">Quiz Game</a>
+          <a href="coin.html" class="fs-5 fw-light nav-link">Coin Game</a>
+          <a href="snake.html" class="fs-5 fw-light nav-link">Snake Game</a>
+          <a href="rpsgame.html" class="fs-5 fw-light nav-link">RPS Game</a>
+          <a href="rank.html" class="fs-5 fw-light nav-link">Top Global</a>
+          <a href="shops.html" class="fs-5 fw-light nav-link">NFT Shop</a>
+          <a href="inventory.html" class="fs-5 fw-light nav-link act">NFT Inventory</a>
+
+        </div>
+        <button class="btn btn-outline-danger" id="logout-button">Logout</button>
+      </nav>
+      <hr>
+      <div class="container">
+        <div class="header">My Bought NFTs</div>
+        <div class="nft-list" id="nftList">
+          <!-- NFT cards will be appended here dynamically -->
+        </div>
+       
+      </div>
+
+
+
+      <script>
+        const nftList = document.getElementById('nftList');
+  
+        // Sample data structure for NFTs
+        const nfts = [
+          { id: '1', title: 'Ancient', coins: '4 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-tn25mk0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=a065a2ea7dabbea7e2a3a5c3718df2732d4cdca7' },
+          { id: '2', title: 'Invoker', coins: '8 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-esosuj0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=e14c2dd6bd82ded8fef742dc106c9284448c0cc2' },
+          { id: '3', title: 'Broodmother', coins: '5 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-jr9bqk0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=09964a37c50f0f1412cac2f8da6aed087b6d2b0b' },
+          { id: '4', title: 'Shadow Fiend', coins: '6 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-59n78k0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=eefa419576db9b144ff9d478e0e5b6ec6887c9ef' },
+          { id: '5', title: 'Drow Ranger', coins: '6 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-yiqxik0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=0440d8eeaf7ef005e5b58b00dadc3b7c45b21450' },
+          { id: '6', title: 'Rubick', coins: '8 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-8hobpj0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=ff33ef84f86fba2e2d49a3aa1896f5e4c7b6e7c9' },
+          { id: '7', title: 'Luna', coins: '15 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-957zfk0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=5a98149b39c62eff2359b7e4b9c1f011fb259770' },
+          { id: '8', title: 'Lone Druid', coins: '15 coins', image: 'https://preview.redd.it/dota-2-profile-avatars-v0-lcrajl0uiglc1.jpg?width=512&format=pjpg&auto=webp&s=cedd7acc082808dc63858b7271e5181366aa2256' }
+        ];
+  
+        // Function to display NFTs
+        function displayNFTs() {
+          nftList.innerHTML = '';
+          const boughtNFTs = JSON.parse(localStorage.getItem('boughtNFTs')) || [];
+          boughtNFTs.forEach(nftId => {
+            const nft = nfts.find(n => n.id === nftId);
+            if (nft) {
+              const nftCard = document.createElement('div');
+              nftCard.classList.add('nft-card');
+              nftCard.innerHTML = `
+                <div class="card-image-container">
+                  <img src="${nft.image}" alt="${nft.title}">
+                </div>
+                <div class="info">
+                  <div class="title">${nft.title}</div>
+                  <div class="coins">${nft.coins}</div>
+                </div>
+              `;
+              nftList.appendChild(nftCard);
+            }
+          });
+        }
+  
+        // Store 2 NFTs as an example
+        function storeExampleNFTs() {
+          const exampleNFTs = ['1', '2']; // IDs of the NFTs to store
+          localStorage.setItem('boughtNFTs', JSON.stringify(exampleNFTs));
+          displayNFTs();
+        }
+  
+        // Initial setup
+        storeExampleNFTs();
+      </script>
+
+      <br><br>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  
+  <script>
+    $(document).ready(function() {
+      // Fetch user data
+      const username = Cookies.get('username');
+      if (username) {
+        $.get(`https://quest-py-36626ab33017.herokuapp.com/api/user/${username}`, function(data) {
+          if (data && data.user) {
+            $('#user-name').text(data.user.name);
+            $('#user-point').text(data.user.point);
+          }
+        });
+      }
+
+
+      // Logout button handler
+      $('#logout-button').click(function() {
+        $.ajax({
+          url: "https://quest-py-36626ab33017.herokuapp.com/api/logout",
+          method: 'GET',
+          success: function() {
+            Swal.fire({
+              title: "Logout!",
+              icon: "success",
+              allowOutsideClick: false,
+              allowEscapeKey: false
+            }).then(() => {
+              window.location.href = 'index.html'; // Redirect to home page
+            });
+          },
+          error: function(err) {
+            console.error(err);
+            Swal.fire({
+              title: "Error!",
+              icon: "error"
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
