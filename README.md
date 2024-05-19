@@ -1,3 +1,4 @@
+# DogeGames
 ## Overview:
 
 DogeGames is an NFT purchasing website using emulated digital currency that a user can phone through playing a range of online games available on the website. 
