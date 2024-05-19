@@ -26,7 +26,23 @@ Student ID || Student Name    || GitHub Username
 
 ## How to launch Website:
 
-After downloading and extracting the zip file, browse through the files and open the index.html file.
+On the server:
+
+1. Install Flask by typing in terminal:
+
+$ pip install Flask
+
+2. Install SQLite (download from following link)
+
+https://www.sqlite.org/download.html
+
+3. Create SQLite Database
+
+4. Create Table in Database
+
+5. Run Flask 
+
+6. Run phyton api.py
 
 ## Flask API Documentation Endpoints:
 
