@@ -28,7 +28,7 @@ Student ID || Student Name    || GitHub Username
 
 After downloading and extracting the zip file, browse through the files and open the index.html file.
 
-## Flask API Documentation Endpoints
+## Flask API Documentation Endpoints:
 
 ### /api/store
 
