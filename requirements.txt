@@ -1,12 +1,1 @@
-CREATE TRIGGER calculateRentalCost
-AFTER UPDATE OF dateBack ON rentalContract
-WHEN NEW.dateBack IS NOT NULL
-BEGIN
-    UPDATE rentalContract
-    SET rentalCost = (
-        SELECT PhoneModel.baseCost + PhoneModel.dailyCost*(1+julianday(rentalContract.dateBack)-julianday(rentalContract.dateOut)) 
-        FROM PhoneModel
-        JOIN Phone ON PhoneModel.modelNumber = Phone.modelNumber
-        JOIN rentalContract ON Phone.IMEI = rentalContract.IMEI
-        );
-END;
+pip install Flask-Testing
