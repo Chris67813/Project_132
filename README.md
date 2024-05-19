@@ -29,3 +29,6 @@ Student ID || Student Name    || GitHub Username
 After downloading and extracting the zip file, browse through the files and open the index.html file.
 
 ## How to conduct testing:
+1. open bash
+2. cd to your directory with our zip file in it.
+3. after getting to the root of our project file type in bash "python -m unittest discover -s tests"
