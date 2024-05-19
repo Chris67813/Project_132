@@ -14,15 +14,16 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
-  <style>
+
+  <style>  
     .act {
       position: relative;
     }
 
-    .act::after {
+    .act::after {  /*  (2024) ChatGPT. https://chatgpt.com/  */
       content: "";
       position: absolute;
-      width: 60%;
+      width: 60%; 
       height: 2px;
       background: #28888F;
       bottom: 0;
@@ -33,7 +34,7 @@
       bottom: -3px;
     }
 
-    .card-nav {
+    .card-nav {    
       height: 45px;
       border-radius: 12px;
       background: rgba(255, 255, 255, 0.60);
@@ -234,7 +235,7 @@
             }, 1000); // Wait for 1 second before revealing the result
         }
 
-        function gameOver() {
+        function gameOver() {      //(2024) ChatGPT. https://chatgpt.com/
             document.getElementById("gameOver").style.display = "block";
             document.getElementById("totalCoins").innerText = coins;
             document.getElementById("coins").style.display = "none";
