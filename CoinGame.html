@@ -20,7 +20,7 @@
       position: relative;
     }
 
-    .act::after {  /*  (2024) ChatGPT. https://chatgpt.com/  */
+    .act::after {  
       content: "";
       position: absolute;
       width: 60%; 
@@ -238,7 +238,7 @@
             }, 1000); // Wait for 1 second before revealing the result
         }
 
-        function gameOver() {      //(2024) ChatGPT. https://chatgpt.com/
+        function gameOver() {    //[1]
             document.getElementById("gameOver").style.display = "block";
             document.getElementById("totalCoins").innerText = coins;
             document.getElementById("coins").style.display = "none";
