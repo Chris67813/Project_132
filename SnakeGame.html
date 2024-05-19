@@ -204,7 +204,7 @@
         <button class="btn btn-outline-danger" id="logout-button">Logout</button>
       </nav>
       <hr>
-
+      <!-- Background music-->
       <audio id="bg-music" autoplay loop> <source src="https://www.myinstants.com/media/sounds/doors-elevator-music.mp3"> Your browser does not support the audio element. </audio>
       <audio id="eat-sound">
         <source src="https://commondatastorage.googleapis.com/codeskulptor-assets/jump.ogg" type="audio/mpeg">
@@ -227,7 +227,7 @@
           <span class="close">&times;</span>
           <p id="modal-text"></p>
           <button id="reset-btn">Play Again</button>
-          <button id="modal-homepage-btn">Return to Homepage</button> <!-- Added button -->
+          <button id="modal-homepage-btn">Return to Homepage</button> 
         </div>
       </div>
       
@@ -240,7 +240,7 @@
       var modalText = document.getElementById('modal-text');
       var resetBtn = document.getElementById('reset-btn');
       var homepageBtn = document.getElementById('homepage-btn');
-      var modalHomepageBtn = document.getElementById('modal-homepage-btn'); // Added variable
+      var modalHomepageBtn = document.getElementById('modal-homepage-btn');
       var muteBtn = document.getElementById('mute-btn'); // Mute button
       var volumeSlider = document.getElementById('volume-slider'); // Volume slider
       
@@ -370,7 +370,7 @@
       }
       
       function returnToHomepage() {
-        window.location.href = ''; // Replace with your homepage URL
+        window.location.href = 'index.html';
       }
       
       function toggleMute() {
