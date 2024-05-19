@@ -1,4 +1,4 @@
-##Overview:##
+## Overview:
 
 DogeGames is an NFT purchasing website using emulated digital currency that a user can phone through playing a range of online games available on the website. 
 Each user we need to register to create their own DogeGames account on their first time visiting the site. After the user logs in with their respective username and password, 
@@ -8,7 +8,7 @@ If the user has sufficient funds, the transaction can proceed. The user can then
 NFTs, they will increase in the leaderboard rankings. 
 
 
-Students:
+## Students:
 
 Student ID || Student Name    || GitHub Username
 
