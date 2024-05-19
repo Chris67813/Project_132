@@ -22,8 +22,8 @@ Student ID || Student Name    || GitHub Username
 
 
 
-How to launch Website:
+## How to launch Website:
 
 After downloading and extracting the zip file, browse through the files and open the index.html file.
 
-How to conduct testing:
+## How to conduct testing:
