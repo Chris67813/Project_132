@@ -35,3 +35,5 @@ After downloading and extracting the zip file, browse through the files and open
 
 ## Reference:
 1. ChatGPT. "Coin Flip Game HTML Code." 2024. ChatGPT. Web. https://chatgpt.com/.
+2. W3Schools. (2024). HTML Game Setup Tutorial. Retrieved from https://www.w3schools.com/html/html5_canvas.asp
+
