@@ -26,7 +26,7 @@ Student ID || Student Name    || GitHub Username
 
 ## How to launch Website:
 
-On the server:
+On the server, https://quest-ui-game.web.app/home: 
 
 1. Install Flask by typing in terminal:
 
