@@ -1,10 +1,10 @@
 #Flask, fill up the functions below
 #[1][2]
 from flask import Flask, request, jsonify, session, redirect, url_for
-from flask_bcrypt import Bcrypt
-from flask_cors import CORS, cross_origin
+from flask_bcrypt import Bcrypt  ##[2]
+from flask_cors import CORS, cross_origin    ##[3]
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
+from werkzeug.utils import secure_filename ##[4]
 import os
 
 #Initialise Flask Application and configure the Bcrypt extension
