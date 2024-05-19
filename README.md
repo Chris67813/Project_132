@@ -32,3 +32,6 @@ After downloading and extracting the zip file, browse through the files and open
 1. open bash
 2. cd to your directory with our zip file in it.
 3. after getting to the root of our project file type in bash "python -m unittest discover -s tests"
+
+## Reference:
+1. ChatGPT. "Coin Flip Game HTML Code." 2024. ChatGPT. Web. https://chatgpt.com/.
