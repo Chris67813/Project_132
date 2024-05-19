@@ -30,7 +30,7 @@ After downloading and extracting the zip file, browse through the files and open
 
 ## Flask API Documentation Endpoints
 
-/api/store
+### /api/store
 
 POST /api/store: Add a new item to the store.
 
@@ -45,7 +45,7 @@ DELETE /api/store/int:item_id: Delete a store item by its ID.
 
 
 
-/api/transaction
+### /api/transaction
 
 POST /api/transaction: Add a new transaction to the transaction table.
 
