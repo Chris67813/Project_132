@@ -36,11 +36,11 @@ After downloading and extracting the zip file, browse through the files and open
 ## Reference:
 [1] ChatGPT. "GameOver function." 2024. ChatGPT. Web. https://chatgpt.com/
 
-[2] Flask-Bcrypt. (n.d.). Flask-Bcrypt Documentation (Version 1.0.1). Retrieved from https://flask-bcrypt.readthedocs.io/en/1.0.1/index.html
+[2] Flask-Bcrypt. (2011). Flask-Bcrypt Documentation (Version 1.0.1). Retrieved from https://flask-bcrypt.readthedocs.io/en/1.0.1/index.html
 
-[3] Flask-CORS. (n.d.). Flask-CORS Documentation. Retrieved from https://flask-cors.readthedocs.io/en/latest/
+[3] Flask-CORS. (2013). Flask-CORS Documentation. Retrieved from https://flask-cors.readthedocs.io/en/latest/
 
-[4] Werkzeug. (n.d.). Werkzeug Utilities Documentation (Version 3.0.x). Retrieved from https://werkzeug.palletsprojects.com/en/3.0.x/utils/
+[4] Werkzeug. (2007). Werkzeug Utilities Documentation (Version 3.0.x). Retrieved from https://werkzeug.palletsprojects.com/en/3.0.x/utils/
 
 [5] W3Schools. (2024). HTML Game Setup Tutorial. Retrieved from https://www.w3schools.com/html/html5_canvas.asp
    
