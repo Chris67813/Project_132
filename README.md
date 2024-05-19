@@ -37,5 +37,6 @@ After downloading and extracting the zip file, browse through the files and open
 1. ChatGPT. "Coin Flip Game HTML Code." 2024. ChatGPT. Web. https://chatgpt.com/.
 2. W3Schools. (2024). HTML Game Setup Tutorial. Retrieved from https://www.w3schools.com/html/html5_canvas.asp
 3. Flask-Bcrypt. (n.d.). Flask-Bcrypt Documentation (Version 1.0.1). Retrieved from https://flask-bcrypt.readthedocs.io/en/1.0.1/index.html
+4. Flask-CORS. (n.d.). Flask-CORS Documentation. Retrieved from https://flask-cors.readthedocs.io/en/latest/
 
 
